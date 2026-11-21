@@ -1,0 +1,42 @@
+/* Threads 浅色空主页；不创建状态栏、不影响其他 App。 */
+#app.app-threads{position:relative;background:#fff!important;color:#000;min-height:0;overflow:hidden}
+#phone:has(#app.app-threads),#phone:has(#app.app-threads) #device-content{overflow:clip}
+.app-threads .threads-header{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;min-height:60px;padding:0 18px;flex-shrink:0;background:#fff}
+.threads-logo{display:block;width:42px;height:42px;object-fit:contain;justify-self:center;filter:invert(1)}
+.app-threads .threads-back{display:grid;place-items:center;min-width:44px;min-height:44px;padding:0;color:#000;text-align:center}
+.threads-header svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.threads-menu{display:grid;place-items:center;width:44px;height:44px;color:#000}
+.threads-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;background:#fff}
+.threads-scroll::-webkit-scrollbar{display:none}
+.threads-empty-space{min-height:calc(100dvh - 80px);padding:0 16px calc(144px + env(safe-area-inset-bottom,0px));box-sizing:border-box}
+.threads-floating-nav{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(30px + env(safe-area-inset-bottom,0px));z-index:8;display:flex;align-items:center;justify-content:space-around;width:90%;max-width:480px;min-height:64px;padding:7px 12px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 5px 18px #0002}
+.app-threads .threads-floating-nav button{display:grid;place-items:center;flex:1;min-width:0;min-height:46px;padding:0;color:#fff;background:none;border:0}
+.threads-floating-nav svg{display:block;width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.threads-floating-nav [aria-current=page] svg{fill:#fff;stroke-width:1.2}
+.threads-floating-nav button:disabled{pointer-events:none;opacity:1;cursor:default}
+@media(max-width:359px){.threads-floating-nav{min-height:60px;padding-inline:8px}.threads-floating-nav svg{width:23px;height:23px}}
+/* 第一章逐条推流；帖子追加时不会重建页面或底栏。 */
+.threads-feed:not(:empty){padding:0 16px calc(144px + env(safe-area-inset-bottom,0px))}
+.threads-post{display:flex;gap:12px;padding:20px 0;border-bottom:1px solid #ededed}
+.threads-post.is-new{animation:threads-post-enter .32s ease-out}
+.threads-avatar{display:grid;place-items:center;width:38px;height:38px;flex:0 0 38px;border-radius:50%;font-size:15px;font-weight:650;color:#3b3b3b}
+.threads-post-copy{flex:1;min-width:0}
+.app-threads .threads-post-copy>header{display:flex;align-items:center;justify-content:flex-start;gap:9px;min-height:24px;padding:0;background:none}
+.threads-post-copy header strong{font-size:14px;font-weight:650;overflow-wrap:anywhere}.threads-post-copy time{font-size:11px;color:#aaa;white-space:nowrap}.threads-post-copy header>span{margin-left:auto;font-size:18px;font-weight:650}
+.threads-post-copy>p{font-size:15px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;margin:5px 0 13px;color:#151515}
+.threads-post-actions{display:flex;align-items:center;gap:18px;color:#181818}.threads-post-actions>span{display:flex;align-items:center;justify-content:center}.threads-post-actions svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@keyframes threads-post-enter{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.chapter1-notice-overlay{position:absolute;inset:0;z-index:25000;pointer-events:auto;background:#00000008}
+.chapter1-notice-banner{position:absolute;left:12px;right:12px;top:calc(52px + env(safe-area-inset-top,0px));max-width:480px;margin:0 auto;display:flex;align-items:center;gap:13px;padding:17px 18px;border-radius:22px;background:rgba(20,20,20,.96);color:white;box-shadow:0 8px 30px #0003;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);text-align:left;animation:threads-notice-enter .3s ease-out}
+.chapter1-notice-banner>img{display:block;width:42px;height:42px;border-radius:11px;object-fit:cover;flex-shrink:0}.chapter1-notice-banner>span{display:flex;flex-direction:column;gap:7px;min-width:0}.chapter1-notice-banner strong{font-size:14px;font-weight:650}.chapter1-notice-banner span>span{font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+@keyframes threads-notice-enter{from{transform:translateY(-130%);opacity:0}to{transform:translateY(0);opacity:1}}
+@media(prefers-reduced-motion:reduce){.threads-post.is-new,.chapter1-notice-banner{animation:none}}
+
+.chapter1-flight-notice .chapter1-notice-banner{background:rgba(255,255,255,.98);color:#202a24;border:1px solid #e6eee8}
+.chapter1-flight-notice .chapter1-notice-banner>img{background:#1da66f;padding:3px}
+
+.app-threads .threads-like{display:grid;place-items:center;padding:0;min-width:26px;min-height:28px;color:#181818;background:none;border:0}
+.app-threads .threads-like.is-liked{color:#ff3b30}
+.threads-like.is-liked svg{fill:currentColor;stroke:currentColor}
+.chapter1-kkt-notice .chapter1-notice-banner{background:#fee500;color:#302a17;border:1px solid #ffe967}
+.chapter1-kkt-notice .chapter1-notice-banner>img{border-radius:50%}

@@ -1,0 +1,61 @@
+/* 健康 App 专用：所有布局均限制在健康页面内。 */
+#app.app-health { background:#f4f4f8; }
+.app-health header,.app-health .title-row { background:#fff; }
+.app-health .title-row { padding-top:10px; padding-bottom:20px; }
+.app-health h1 { font-size:34px; font-weight:750; letter-spacing:-1px; }
+.health-scroll { padding:4px 18px 28px; }
+.health-section-heading { display:flex; align-items:center; justify-content:space-between; margin:22px 2px 12px; }
+.health-section-heading h2 { margin:0; display:flex; align-items:center; gap:8px; font-size:21px; }
+.health-section-heading>span { font-size:12px; color:#98989d; }
+.app-health svg { width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+.health-metrics { display:grid; gap:12px; }
+.health-metric { background:#fff; border-radius:16px; padding:17px 18px; }
+.health-metric-label { display:flex; align-items:center; gap:7px; color:#fa534b; font-size:15px; }
+.metric-heart .health-metric-label { color:#ed456d; }
+.metric-heart svg { fill:currentColor; stroke:none; }
+.metric-sleep .health-metric-label { color:#24aab7; }
+.health-metric p { margin:17px 0 0; display:flex; gap:5px; align-items:baseline; flex-wrap:wrap; }
+.health-metric b { font-size:32px; line-height:1.1; letter-spacing:-1px; color:#141416; }
+.health-metric p>span { color:#8e8e93; font-size:14px; }
+.health-section-heading svg { color:#ec4568; }
+.health-legend { display:flex; flex-wrap:wrap; gap:14px 24px; background:#fff; border-radius:16px; padding:16px; }
+.health-legend>div { display:flex; align-items:center; gap:8px; font-size:13px; }
+.health-legend i { display:block; width:11px; height:11px; border-radius:50%; }
+.health-legend small { display:block; color:#929297; font-size:11px; margin-top:4px; }
+.health-legend .omega { background:#bde8c6; border:1px solid #54aa68; }
+.health-legend .alpha { background:#ffddb0; border:1px solid #e89835; }
+.health-date-range { color:#98989f; font-size:12px; margin:14px 3px; }
+.health-months { display:grid; gap:14px; }
+.health-month { background:#fff; border-radius:18px; padding:20px 14px; }
+.health-month h3 { font-size:19px; margin:0 5px 20px; font-weight:650; }
+.health-weekdays,.health-calendar-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:7px 4px; }
+.health-weekdays { margin-bottom:10px; color:#9b9ba1; font-size:11px; text-align:center; }
+.health-day,.health-day-blank { min-width:0; aspect-ratio:1; max-height:44px; display:grid; place-items:center; border-radius:11px; font-size:14px; font-variant-numeric:tabular-nums; }
+.health-day.omega { background:#c6eed0; color:#216b37; }
+.health-day.alpha { background:#ffe0b9; color:#905518; }
+.health-day.overlap { background:linear-gradient(90deg,#c6eed0 50%,#ffe0b9 50%); color:#344538; }
+.health-section-label { margin:24px 2px 14px; font-size:20px; }
+.health-accounts { background:#fff; border-radius:18px; padding:0 18px; }
+.health-account { display:flex; align-items:center; gap:14px; padding:21px 0; }
+.health-account+.health-account { border-top:1px solid #ededf1; }
+.health-account-avatar { width:52px; height:52px; border-radius:50%; background:#e7e7eb; color:#8c8c92; display:grid; place-items:center; font-size:23px; flex-shrink:0; }
+.health-account strong { font-size:17px; font-weight:600; }
+.health-account p { color:#98989e; margin:6px 0 0; font-size:13px; }
+.app-health .health-tabs { background:#fafafc; }
+.app-health .health-tabs button { display:flex; flex-direction:column; align-items:center; gap:5px; }
+.app-health .health-tabs button>span { font-size:10px; line-height:14px; }
+.app-health .health-tabs [aria-current=page] { color:#ec4568; }
+.app-health .health-tabs button:disabled { pointer-events:none; opacity:.5; }
+/* 长日历只在内容面板滚动，外壳不形成可被聚焦滚动的区域。 */
+#phone:has(#app.app-health),
+#phone:has(#app.app-health) #device-content { overflow: clip; }
+/* 单月周期面板：标题和月份切换器保持同一行。 */
+.health-cycle-heading { gap: 6px; }
+.health-cycle-heading h2 { font-size:clamp(15px,4vw,18px); white-space:nowrap; gap:5px; }
+.health-cycle-heading h2 svg { width:18px; height:18px; }
+.health-month-switcher { display:flex; align-items:center; justify-content:flex-end; gap:2px; flex-shrink:0; }
+.health-month-switcher>span { min-width:88px; text-align:center; font-size:12px; font-weight:600; color:#424249; font-variant-numeric:tabular-nums; }
+.health-month-switcher button { display:grid; place-items:center; width:30px; height:36px; padding:0; border-radius:9px; color:#eb4568; font-size:21px; }
+.health-month-switcher button:active { background:#fbe8ee; }
+.health-month-switcher button:disabled { color:#bebec4; opacity:.5; cursor:default; pointer-events:none; }
+.health-cycle .health-months { margin-top:14px; }

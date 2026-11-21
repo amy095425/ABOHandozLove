@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createGameProgress} from '../state/gameProgress.js?v=chapter1-payment-fix-2';
+import {createChapter1Opening,readingDelay} from '../state/chapter1Opening.js?v=chapter1-payment-fix-2';
+import {createChapter1Flight} from '../state/chapter1Flight.js?v=chapter1-payment-fix-2';
+import {chapter1Threads} from '../data/threadsPostsData.js?v=chapter1-opening-1';
+import {chapter1FlightMessage,chapter1FlightPreview} from '../data/flightOpeningData.js?v=chapter1-flight-1';
+function clock(){let time=0,id=0;const jobs=new Map();return {setTimer:(fn,delay)=>{jobs.set(++id,{fn,at:time+delay});return id;},clearTimer:id=>jobs.delete(id),now:()=>time,tick(ms){const end=time+ms;while(true){const next=[...jobs].filter(([,j])=>j.at<=end).sort((a,b)=>a[1].at-b[1].at)[0];if(!next)break;time=next[1].at;jobs.delete(next[0]);next[1].fn();}time=end;},pending:()=>jobs.size};}
+function setup(){const c=clock(),p=createGameProgress(),opening=createChapter1Opening({progress:p,...c}),items=[],flight=createChapter1Flight({opening,progress:p,items,...c});return {c,p,opening,items,flight};}
+function completeFeed(s){s.opening.onUnlocked();s.c.tick(5000);s.opening.acknowledgeNotification();s.opening.enterThreads();s.c.tick(600);for(let i=0;i<13;i++)s.c.tick(readingDelay(chapter1Threads[i].content));}
+test('最后一条后精确2秒触发；不点击不能注入，点击仅注入一次',()=>{const s=setup();assert.equal(s.flight.acknowledgeNotification(),false);completeFeed(s);assert.equal(s.opening.state.visibleCount,14);assert.equal(s.flight.state.phase,'waiting');assert.equal(s.items.length,0);s.c.tick(1999);assert.equal(s.flight.state.phase,'waiting');s.c.tick(1);assert.equal(s.flight.state.phase,'notification');s.c.tick(120000);assert.equal(s.flight.state.phase,'notification');assert.equal(s.items.length,0);assert.ok(s.flight.acknowledgeNotification());assert.equal(s.items.length,1);assert.equal(s.items[0].content,chapter1FlightMessage);assert.equal(s.items[0].time,'刚刚');assert.equal(s.flight.acknowledgeNotification(),false);assert.equal(s.items.length,1);s.flight.dispose();s.opening.dispose();});
+test('重复进入Threads或离开Threads不重新计时，第二阶段仍全局出现',()=>{const s=setup();completeFeed(s);s.opening.leaveThreads();s.c.tick(1000);s.opening.enterThreads();s.opening.leaveThreads();s.c.tick(1000);assert.equal(s.flight.state.phase,'notification');assert.equal(s.c.pending(),0);s.flight.dispose();s.opening.dispose();});
+test('切换章节后清理第二阶段计时器',()=>{const s=setup();completeFeed(s);s.p.triggerChapter2Ready();s.p.enterChapter(2);s.c.tick(10000);assert.equal(s.flight.state.phase,'cancelled');assert.equal(s.flight.acknowledgeNotification(),false);assert.equal(s.items.length,0);assert.equal(s.c.pending(),0);s.flight.dispose();s.opening.dispose();});
+test('横幅仅20字预览，卡片保留完整原文',()=>{assert.equal(chapter1FlightPreview,chapter1FlightMessage.substring(0,20)+'...');assert.ok(chapter1FlightMessage.endsWith('祝您旅途顺利！'));});

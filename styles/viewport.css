@@ -1,0 +1,70 @@
+/* 全局视口与原生点击体验；不改变各 App 的业务或页面结构。 */
+* { -webkit-tap-highlight-color: transparent; }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000000;
+}
+#phone {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+/* App 不继承桌面预览的手机宽度上限，避免两侧露出黑色背景。 */
+#phone.in-app {
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+}
+#device-content {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+#phone.in-app #device-content {
+  padding: 0;
+  overflow: hidden;
+}
+#app {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  /* 背景铺到 Home 条下方，同时为操作条预留安全区。 */
+  padding: 0 0 calc(36px + env(safe-area-inset-bottom, 0px));
+}
+#phone.in-app #home-button {
+  bottom: env(safe-area-inset-bottom, 0px);
+}
+button, a, div, img {
+  outline: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+button:focus, button:focus-visible, button:active,
+a:focus, a:focus-visible, a:active {
+  outline: none;
+  box-shadow: none;
+}
+/* 输入及编辑区域继续支持光标、选区和复制。 */
+input, textarea, [contenteditable="true"], [contenteditable="true"] * {
+  -webkit-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
+}
+
+/* 回复栏仅保留仿真外观，不接受玩家自由输入或发送。 */
+.composer input:disabled { opacity:1; -webkit-text-fill-color:#999; cursor:default; }
+.composer button:disabled { opacity:.5; cursor:default; }

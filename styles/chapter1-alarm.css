@@ -1,0 +1,8 @@
+/* 仅闹钟提醒覆盖全屏，不修改锁屏状态，不创建声音或第二个状态栏。 */
+.chapter1-alarm{position:absolute;inset:0;z-index:30000;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:calc(60px + env(safe-area-inset-top,0px)) 26px calc(54px + env(safe-area-inset-bottom,0px));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+.chapter1-alarm-time{font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:clamp(70px,21vw,112px);font-weight:250;line-height:1.2;letter-spacing:-4px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.chapter1-alarm-copy{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:23px;margin:38px 0 30px;max-width:410px;flex:1;width:100%}
+.chapter1-alarm-copy svg{width:65px;height:65px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.chapter1-alarm-copy p{font-size:18px;line-height:1.7;text-align:center;color:white;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.chapter1-alarm-stop{width:100%;max-width:330px;min-height:64px;flex-shrink:0;border:0;border-radius:999px;background:#ff9500;color:white;font-size:24px;font-weight:500;padding:15px 24px}
+@media(max-height:600px){.chapter1-alarm{padding-top:25px;padding-bottom:24px}.chapter1-alarm-time{font-size:64px}.chapter1-alarm-copy{margin:20px 0;gap:14px}.chapter1-alarm-copy svg{width:48px;height:48px}.chapter1-alarm-copy p{font-size:16px}.chapter1-alarm-stop{min-height:52px;font-size:21px}}

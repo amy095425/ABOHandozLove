@@ -1,0 +1,28 @@
+/* 全局唯一状态栏；尺寸、图标、时间排版对所有 App 完全一致。 */
+#status-bar {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0 0 calc(48px + env(safe-area-inset-top, 0px));
+  width: 100%;
+  height: calc(48px + env(safe-area-inset-top, 0px));
+  margin: 0;
+  padding: env(safe-area-inset-top, 0px) 24px 0;
+  box-sizing: border-box;
+  background: var(--status-surface, #000);
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+#status-bar[data-tone=dark] { color: #20242a; }
+#status-bar #time { line-height:20px; font-variant-numeric:tabular-nums; letter-spacing:-.3px; }
+#status-bar .status-icons { display:flex; align-items:center; gap:5px; height:20px; }
+#status-bar svg { display:block; height:14px; flex-shrink:0; fill:currentColor; }
+#status-bar .status-cellular { width:18px; }
+#status-bar .status-wifi { width:18px; }
+#status-bar .status-battery { width:28px; }
+/* 保留原有锁屏/密码流程，不让状态栏穿透覆盖层。 */
+#phone:not([data-boot=unlocked]) #status-bar { visibility:hidden; }

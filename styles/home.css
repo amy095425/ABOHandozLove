@@ -1,0 +1,79 @@
+/* 主屏幕专用：不影响 App 页面、锁屏或密码键盘。 */
+#home {
+  --home-icon-size: 60px;
+  padding-bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+}
+#home-pages { margin-top: 20px; }
+#home .home-page { padding: 12px 16px 20px; }
+#home .app-grid {
+  display: grid;
+  width: 100%;
+  max-width: 340px;
+  margin-inline: auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 20px;
+  row-gap: 24px;
+  align-content: start;
+  align-items: start;
+}
+#home .app-icon {
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  color: #fff;
+  font-size: 12px;
+  line-height: 16px;
+}
+#home .icon {
+  flex: 0 0 var(--home-icon-size);
+  width: var(--home-icon-size);
+  height: var(--home-icon-size);
+  min-width: var(--home-icon-size);
+  min-height: var(--home-icon-size);
+  aspect-ratio: 1;
+  border-radius: 22%;
+  overflow: hidden;
+}
+#home .icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#home .app-icon > span:last-child {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#home .dock {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  gap: 20px;
+  width: calc(100% - 32px);
+  max-width: 372px;
+  margin: 0 auto;
+  padding: 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+#home .dock .app-icon > span:last-child { display: none; }
+#home .dots { flex-shrink: 0; padding: 8px 0; }
+/* 窄屏仍保持正方形，网格和 Dock 同步缩小到 56px。 */
+@media (max-width: 359px) {
+  #home { --home-icon-size: 56px; }
+  #home .app-grid, #home .dock { column-gap: 12px; }
+  #home .dock { padding-inline: 12px; }
+}

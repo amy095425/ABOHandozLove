@@ -1,0 +1,8 @@
+import {chapter1Alarm} from '../state/chapter1Alarm.js?v=chapter1-payment-fix-2';
+const paths={world:'<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 7h14M5 17h14"/>',alarm:'<circle cx="12" cy="13" r="8"/><path d="M12 8v5l4 2M5 3 2 6M19 3l3 3M6 20l-2 3M18 20l2 3"/>',stopwatch:'<circle cx="12" cy="14" r="8"/><path d="M9 2h6M12 2v4M18 6l2-2M12 9v5"/>',timer:'<circle cx="12" cy="12" r="9"/><path d="M12 5v7l4 2"/>'};
+const svg=key=>`<svg viewBox="0 0 24 24" aria-hidden="true">${paths[key]}</svg>`;
+export function renderClock(e,existingAlarms=[]){
+ const reminder=chapter1Alarm.state.alarmRecord;
+ const rows=[...(reminder?[{...reminder,story:true}]:[]),...existingAlarms];
+ return `<header class="clock-topbar"><button type="button" data-action="home">‹ 主屏幕</button><span>时钟</span><span></span></header><div class="clock-title"><h1>闹钟</h1></div><div class="clock-alarm-scroll">${rows.length?rows.map(a=>`<article class="clock-alarm-row" ${a.story?'data-story-alarm':''}><div><time>${e(a.time)}</time><p>${e(a.label||'闹钟')}</p>${a.story?`<small>${a.enabled?'提醒中':'已关闭'}</small>`:''}</div><input class="clock-alarm-switch" type="checkbox" role="switch" aria-label="${e(a.label||'闹钟')}，${a.enabled?'已开启':'已关闭'}" ${a.enabled?'checked':''} ${a.story?'disabled aria-disabled="true"':''}></article>`).join(''):'<p class="clock-alarm-empty">暂无闹钟</p>'}</div><nav class="tabs clock-tabs" aria-label="时钟导航">${[['world','世界时钟'],['alarm','闹钟'],['stopwatch','秒表'],['timer','计时器']].map(([id,label])=>`<button type="button" ${id==='alarm'?'data-tab="闹钟" aria-current="page"':'disabled aria-disabled="true"'}>${svg(id)}<span>${e(label)}</span></button>`).join('')}</nav>`;
+}

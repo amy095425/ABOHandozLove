@@ -1,0 +1,88 @@
+/* 淘宝独立购物界面，所有状态与样式均限定在本 App。 */
+#app.app-taobao{background:#f5f5f5;color:#252525;min-height:0;position:relative;overflow:hidden}
+#phone:has(#app.app-taobao),#phone:has(#app.app-taobao) #device-content{overflow:clip}
+.tb-base{display:flex;flex-direction:column;flex:1;min-height:0}
+.app-taobao .tb-header{display:grid;grid-template-columns:88px 1fr 88px;align-items:center;min-height:54px;padding:0 12px;flex-shrink:0;background:#fff;color:#222}
+.app-taobao .tb-header button{min-width:0;color:#ff5000;font-size:13px;padding:0;text-align:left;min-height:44px}
+.app-taobao .tb-header h1,.app-taobao .tb-header h2{font-size:20px;text-align:center;margin:0;letter-spacing:0}
+
+.tb-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:10px}
+.tb-scroll::-webkit-scrollbar,.tb-category-nav::-webkit-scrollbar{display:none}
+.tb-price{color:#ff3d00;font-size:13px;margin:8px 0}.tb-price strong{font-size:21px;letter-spacing:-.5px;margin-left:2px}
+.app-taobao .tb-tabs{flex-shrink:0;background:white;padding:9px 4px 5px;border-top:1px solid #eee}
+.app-taobao .tb-tabs button{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;color:#8a8a8a}
+.app-taobao .tb-tabs button>span:last-child{font-size:10px;line-height:14px}
+.app-taobao .tb-tabs [aria-current=page]{color:#ff5000}
+.tb-tab-icon{position:relative;display:block;height:24px}.tb-tab-icon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tb-badge{position:absolute;top:-6px;left:17px;min-width:17px;height:17px;line-height:17px;padding:0 4px;border-radius:20px;background:#ff3b30;color:white;font-size:10px;text-align:center;border:1px solid white}
+.tb-category-layout{display:flex;flex:1;min-height:0}.tb-category-nav{width:92px;flex:0 0 92px;overflow-y:auto;background:#eee;scrollbar-width:none}.tb-category-nav button{display:block;min-height:57px;width:100%;padding:12px 8px;font-size:11px;text-align:center;line-height:1.5;border-left:3px solid transparent}.tb-category-nav [aria-current=page]{background:#fff;color:#ff5000;border-left-color:#ff5000;font-weight:650}.tb-category-layout>.tb-scroll{padding:8px}.tb-category-title{font-size:15px;margin:8px 3px 14px}.tb-category-title small{font-size:10px;font-weight:400;color:#aaa;display:block;margin-top:4px}.tb-category-layout .tb-price strong{font-size:18px}
+.tb-empty{text-align:center;color:#aaa;padding:80px 12px;font-size:14px}.tb-empty>span{font-size:52px;filter:grayscale(1);opacity:.4;display:block;margin-bottom:20px}
+.tb-cart-line{display:flex;align-items:center;gap:10px;padding:16px 10px;background:white;border-radius:14px;margin-bottom:10px;min-width:0}
+.app-taobao input[type=checkbox],.app-taobao input[type=radio]{accent-color:#ff5000;width:19px;height:19px;flex-shrink:0;margin:0}
+.tb-line-copy{flex:1;min-width:0}.tb-line-copy h3,.tb-checkout-line h3{font-size:12px;line-height:1.5;font-weight:500;margin:0 0 6px;overflow-wrap:anywhere}.tb-line-copy>small{font-size:10px;color:#aaa}.tb-line-bottom{display:flex;align-items:center;gap:6px;justify-content:space-between;flex-wrap:wrap;margin-top:10px}.tb-line-bottom>b{font-size:15px;color:#ff5000}.tb-remove{font-size:10px;color:#aaa;display:block;padding:8px 0 0;margin-left:auto}
+.tb-stepper{display:flex;align-items:center;background:#f4f4f4;border-radius:7px;overflow:hidden;flex-shrink:0}.tb-stepper button{display:grid;place-items:center;width:28px;height:29px;padding:0;font-size:17px;color:#444}.tb-stepper button:disabled{opacity:.25;cursor:default}.tb-stepper output{min-width:25px;text-align:center;font-size:12px;color:#222}
+.tb-settlement{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;padding:12px 14px;flex-shrink:0;border-top:1px solid #eee;font-size:12px}.tb-settlement>label{display:flex;align-items:center;gap:5px;white-space:nowrap}.tb-settlement>span{margin-left:auto;min-width:0;overflow-wrap:anywhere}.tb-settlement strong{color:#ff5000;font-size:17px;white-space:nowrap}.tb-primary{background:#ff5000;color:#fff;padding:12px 18px;border-radius:24px;font-size:13px;white-space:nowrap}.tb-yellow{background:#ffcb35;color:#604005;padding:12px 18px;border-radius:24px;font-size:13px}.tb-primary:disabled{opacity:.5}
+.tb-order{background:white;border-radius:15px;margin-bottom:12px;padding:15px}.tb-order>header{padding:0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;min-height:0;font-size:11px}.tb-order header b{font-size:11px;word-break:break-all}.tb-order header small{display:block;color:#aaa;font-size:10px;margin-top:5px}.tb-order header>span{color:#ff5000;white-space:nowrap}.tb-order>p{color:#999;font-size:11px;text-align:right;margin:10px 0}.tb-order-total{text-align:right;font-size:12px}.tb-order-total strong{font-size:17px;color:#222}
+.tb-sheet-backdrop{position:absolute;inset:0;background:#0006;z-index:80;display:flex;align-items:flex-end}.tb-sheet{position:relative;width:100%;max-height:85%;background:white;border-radius:22px 22px 0 0;display:flex;flex-direction:column;overflow:hidden}.tb-sheet-scroll{padding:24px 20px 10px;overflow:auto;min-height:0}.tb-sheet-close{position:absolute;top:10px;right:10px;background:#fffddd;color:#777;border-radius:50%;font-size:27px;width:34px;height:34px;padding:0;z-index:1}.tb-sheet h2{font-size:17px;line-height:1.6;margin:15px 0 9px;text-align:left}.tb-sheet-scroll>small{color:#999;font-size:11px}.tb-sheet-quantity{display:flex;align-items:center;justify-content:space-between;padding:20px 0 10px;font-size:14px}.tb-sheet footer{padding:14px 20px;display:flex;gap:12px;flex-shrink:0;background:#fff}.tb-sheet footer button{flex:1}
+.tb-checkout{position:absolute;inset:0;background:#f5f5f5;z-index:90;display:flex;flex-direction:column}.tb-recipient{background:#fff;border-radius:14px;padding:19px 15px;margin-bottom:12px;font-size:13px;line-height:1.6}.tb-recipient p{font-size:12px;color:#888;margin-bottom:0}.tb-checkout-line{display:flex;align-items:center;gap:14px;background:#fff;padding:15px;border-bottom:1px solid #f5f5f5}.tb-checkout-line>div:last-child{min-width:0;flex:1}.tb-checkout-line p{font-size:12px;color:#ff5000;margin:10px 0 0}.tb-payment-method{margin:16px 0;padding:16px;border:0;border-radius:14px;background:#fff}.tb-payment-method legend{font-size:13px;font-weight:600;padding:0}.tb-payment-method label{display:flex;align-items:center;gap:10px;min-height:48px;font-size:13px}.tb-payment-method input{margin-left:auto!important}.tb-payment-method label>span{display:grid;place-items:center;width:26px;height:26px;border-radius:7px;background:#e6f3ff;color:#168bda;font-size:14px}.tb-payment-method label:last-child>span{background:#e8f9eb;color:#1daa54}.tb-simulation{text-align:center;font-size:11px;color:#aaa;margin:24px 0}.tb-toast{position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);background:#222d;color:white;font-size:13px;padding:13px 22px;border-radius:10px;max-width:90%;z-index:110;pointer-events:none}
+@media(max-width:359px){.tb-cart-line{gap:7px;padding-inline:7px}.tb-settlement{gap:7px;padding:10px}.tb-settlement strong{font-size:14px}.tb-primary{padding:11px 13px}.tb-category-nav{width:78px;flex-basis:78px}}
+/* 单列文字商品列表，不渲染商品图片或分类色块。 */
+.tb-product-list{display:flex;flex-direction:column;min-width:0;background:#fff}
+.tb-product-row{display:flex;flex-direction:column;min-width:0;padding:15px 14px;border-bottom:1px solid #f0f0f0;background:#fff;content-visibility:auto;contain-intrinsic-size:auto 116px}
+.tb-product-row:last-child{border-bottom:0}
+.tb-product-title{display:block;padding:0;text-align:left;min-width:0;color:#222}
+.tb-product-title h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;overflow-wrap:anywhere;font-size:14px;font-weight:500;line-height:1.6;margin:0}
+.tb-product-shop{font-size:11px;color:#929292;margin:6px 0 9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-product-meta{display:flex;align-items:center;gap:9px;min-width:0;flex-wrap:wrap}
+.tb-product-meta .tb-price{margin:0;white-space:nowrap}.tb-product-meta .tb-price strong{font-size:22px}
+.tb-product-sales{font-size:10px;color:#aaa;white-space:nowrap}
+.tb-quick-add{margin-left:auto;background:#fff1e8;color:#ff5000;border:1px solid #ffceb7;border-radius:16px;padding:6px 10px;min-height:30px;font-size:11px;white-space:nowrap}
+.app-taobao .tb-scroll:has(>.tb-product-list){padding:0;background:#fff}
+.tb-category-layout>.tb-scroll{background:#fff}
+.tb-category-layout .tb-category-title{padding:10px 12px;margin:0;border-bottom:1px solid #eee}
+.tb-category-layout .tb-product-row{padding:13px 10px}
+.tb-category-layout .tb-product-meta{gap:7px}
+.tb-search-wrap{position:relative;z-index:60;flex-shrink:0;background:#fff;padding:10px 14px 14px}
+.tb-search{display:flex;align-items:center;gap:8px;border:2px solid #ff5000;border-radius:24px;padding:0 13px;background:#fff;color:#ff5000;min-height:42px}
+.tb-search>span{font-size:23px;flex-shrink:0}
+.tb-search input{flex:1;min-width:0;width:100%;padding:10px 0;border:0;outline:0;background:transparent;font-size:14px;color:#333;line-height:18px}
+.tb-search input:focus-visible{outline:none}
+.tb-search-suggestions{position:absolute;left:14px;right:14px;top:calc(100% - 7px);max-height:min(52dvh,390px);overflow-y:auto;overflow-x:hidden;scrollbar-width:none;background:#fff;border:1px solid #eee;border-radius:13px;box-shadow:0 10px 26px #0002;padding:5px 0;z-index:61}
+.tb-search-suggestions::-webkit-scrollbar{display:none}
+.tb-suggestion{display:block;width:100%;padding:12px 14px;text-align:left;font-size:12px;line-height:1.7;white-space:normal;overflow-wrap:anywhere;color:#333;background:#fff}
+.tb-suggestion+.tb-suggestion{border-top:1px solid #f6f6f6}
+.tb-suggestion:active{background:#fff4ec;opacity:1}
+.tb-search-empty{color:#aaa;font-size:13px;padding:12px 14px;margin:0}
+.tb-search-recommend-label{font-size:11px;color:#888;padding:13px 14px 5px;border-top:1px solid #eee;margin-top:4px}
+.tb-order-items{margin-top:16px}.tb-order-items p{font-size:12px;line-height:1.7;color:#555;margin:6px 0;overflow-wrap:anywhere}.tb-order-items small{color:#aaa;white-space:nowrap}
+@media(max-width:359px){.tb-category-layout .tb-quick-add{margin-left:0}.tb-category-layout .tb-product-meta .tb-price strong{font-size:19px}}
+
+/* 加购与数量切换只占用原来的行尾空间。 */
+.tb-cart-control{display:flex;align-items:center;justify-content:flex-end;margin-left:auto;min-width:94px;flex-shrink:0;min-height:30px}
+.tb-cart-control .tb-quick-add{margin-left:0}
+.tb-cart-control .tb-stepper{min-height:30px}
+.tb-cart-control .tb-stepper button{font-size:14px;width:30px;height:30px;flex:none}
+.tb-cart-control output{font-variant-numeric:tabular-nums;min-width:34px}
+.tb-badge[hidden]{display:none}
+.tb-sheet footer>.tb-cart-control{flex:1;min-width:0;margin:0;justify-content:center}
+.tb-sheet footer>.tb-cart-control>.tb-yellow{width:100%}
+.tb-sheet footer>.tb-cart-control .tb-stepper button{flex:none}
+.tb-sheet-quantity:empty{display:none}
+
+.tb-order header>span.tb-order-delivered{color:#999}
+/* 银行卡本地模拟付款流程。 */
+.app-taobao .tb-recipient{display:block;width:100%;text-align:left;line-height:1.7;cursor:pointer}.tb-recipient small{color:#ff5000;font-size:11px}
+.tb-payment-backdrop{position:absolute;inset:0;z-index:100;display:flex;align-items:flex-end;background:#0006}
+.tb-payment-panel{width:100%;max-height:88%;display:flex;flex-direction:column;background:#f7f7f8;border-radius:24px 24px 0 0;overflow:hidden}
+.tb-payment-panel>header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;background:white}.tb-payment-panel h2{margin:0;font-size:18px}.tb-payment-panel header button{font-size:13px;color:#888;min-height:36px}
+.tb-payment-panel-scroll{padding:16px 18px 24px;overflow:auto;scrollbar-width:none;min-height:0}
+.tb-address-option,.tb-bank-option{display:block;width:100%;text-align:left;padding:18px;margin-bottom:12px;border-radius:15px;background:#fff;line-height:1.6;border:1px solid #eee}
+.tb-address-option b,.tb-bank-option b{display:block;font-size:14px}.tb-address-option span,.tb-bank-option span{display:block;font-size:13px;margin:8px 0;overflow-wrap:anywhere}.tb-address-option small,.tb-bank-option small{font-size:11px;color:#999}.tb-address-option[aria-pressed=true]{border-color:#ff5000}.tb-address-option[aria-pressed=true] small{color:#ff5000}
+.tb-bank-option{background:linear-gradient(125deg,#fff6e3,#fff);border-color:#ebdabc}.tb-bank-option:last-child{background:linear-gradient(125deg,#eff2f8,#fff);border-color:#d4dbe8}
+.tb-bank-summary{font-size:13px;color:#666;text-align:center}.tb-payment-panel input[data-tb-password]{display:block;width:100%;border:1px solid #ddd;border-radius:12px;background:#fff;height:55px;text-align:center;font-size:23px;letter-spacing:8px;color:#222}.tb-payment-panel input::placeholder{font-size:13px;letter-spacing:0}.tb-password-error{min-height:20px;color:#e3483e;text-align:center;font-size:12px}.tb-password-help{text-align:center;color:#999;font-size:11px}.tb-payment-panel [data-tb-action=password-confirm]{display:block;width:100%;border-radius:18px;padding:13px;background:#ff5000;color:#fff}
+.tb-payment-full{position:absolute;inset:0;z-index:101;background:#fff;display:flex;flex-direction:column;min-height:0;padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))}
+.tb-signature>p{font-size:13px;color:#999;text-align:center;margin:18px 10px}.tb-signature-pad{flex:1;min-height:120px;margin:0 18px;border:1px dashed #ccc;border-radius:15px;overflow:hidden;position:relative}.tb-signature canvas{display:block;width:100%;height:100%;position:absolute;inset:0;touch-action:none;cursor:crosshair}.tb-signature footer{display:flex;gap:14px;padding:15px 20px}.tb-signature footer button{flex:1;padding:14px;border-radius:22px;background:#f1f1f3;font-size:14px}.tb-signature footer button:last-child{background:#ff5000;color:#fff}
+.tb-payment-success{justify-content:center;align-items:center;text-align:center;gap:16px}.tb-payment-success svg{width:82px;height:82px}.tb-payment-success h2{margin:6px 0;font-size:25px}.tb-payment-success>strong{font-size:28px}.tb-payment-success p{font-size:13px;color:#999}.tb-payment-success button{padding:13px 40px;border-radius:24px;background:#ff5000;color:#fff;font-size:14px}
+/* 付款按钮与底部 Home 横条保持安全距离。 */
+.tb-checkout{padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))}
+.tb-payment-panel-scroll{padding-bottom:calc(48px + env(safe-area-inset-bottom,0px))}

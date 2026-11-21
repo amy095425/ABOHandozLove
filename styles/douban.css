@@ -1,0 +1,56 @@
+/* 豆瓣首页专用，不影响其他 App。 */
+.app-douban .douban-feed {
+  padding: 0;
+  background: #eeeeee;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.douban-post {
+  padding: 20px 20px 24px;
+  margin: 0 0 10px;
+  background: #ffffff;
+}
+.douban-post:last-child { margin-bottom: 0; }
+.douban-post-group {
+  margin: 0 0 15px;
+  color: #969696;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.douban-post-author { display: flex; align-items: center; gap: 9px; color: #777; font-size: 13px; }
+.douban-post-author img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: #eee; }
+.douban-post .douban-post-title { font-size: 20px; line-height: 1.55; font-weight: 700; color: #252525; margin: 16px 0 12px; overflow-wrap: anywhere; }
+.douban-post-content { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 16px; line-height: 1.85; color: #333; margin: 0; }
+.douban-comments { margin-top: 20px; padding: 16px 14px; border-radius: 12px; background: #f7f8f9; }
+.douban-comment { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 18px; text-align: left; }
+.douban-comment:last-child { margin-bottom: 0; }
+.douban-comment-avatar { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; flex: 0 0 32px; color: #58636c; font-size: 14px; font-weight: 600; }
+.douban-comment-copy { flex: 1; min-width: 0; }
+.douban-comment-name { color: #3e70b3; font-size: 13px; font-weight: 500; line-height: 1.5; }
+.douban-comment-copy p { margin: 3px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; color: #454545; font-size: 14px; line-height: 1.75; }
+.app-douban .tabs { justify-content: center; background: #fff; }
+.app-douban .tabs button { flex: 0 1 80px; }
+/* 四个可见 Tab；仅首页可交互。 */
+.app-douban .douban-tabs { display:flex; justify-content:space-around; }
+.app-douban .douban-tabs button { flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; font-size:10px; }
+.app-douban .douban-tabs button>span { font-size:10px; line-height:14px; }
+.douban-tabs svg,.douban-action svg { width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+.app-douban .douban-tabs button:disabled { pointer-events:none; opacity:.5; }
+.douban-post-group { display:flex; align-items:center; gap:8px; }
+.douban-group-avatar { display:grid; place-items:center; width:27px; height:27px; flex:0 0 27px; border-radius:50%; color:#58636c; font-size:12px; }
+.douban-action { display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:40px; padding:6px 10px; font-size:13px; color:#858585; white-space:nowrap; }
+.douban-post-author .douban-action-follow { margin-left:auto; color:#3e70b3; min-height:34px; border-radius:6px; background:#f0f5fc; }
+.douban-post-author .douban-action-follow[aria-pressed=true] { color:#999; background:#f5f5f5; }
+.douban-post-actions { display:flex; justify-content:space-around; gap:8px; margin-top:18px; padding:8px 0; border-top:1px solid #f0f0f0; border-bottom:1px solid #f0f0f0; }
+.douban-action-like[aria-pressed=true],.douban-action-comment[aria-pressed=true] { color:#e75a68; }
+.douban-action-like[aria-pressed=true] svg,.douban-action-comment[aria-pressed=true] svg { fill:currentColor; }
+.douban-action-collect[aria-pressed=true] { color:#d59b2e; }
+.douban-action-collect[aria-pressed=true] svg { fill:#fff1c9; }
+.douban-action-share[aria-pressed=true] { color:#27a657; }
+.douban-comment-meta { display:flex; align-items:baseline; gap:7px; flex-wrap:wrap; }
+.douban-floor { font-size:11px; color:#aaa; }
+.douban-comment .douban-action-comment { align-self:flex-start; padding:0; min-height:30px; gap:3px; font-size:10px; }
+.douban-comment .douban-action-comment svg { width:15px; height:15px; }
+.douban-comment { gap:8px; }

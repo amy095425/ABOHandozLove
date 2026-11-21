@@ -1,0 +1,30 @@
+/* iOS 最近通话；全局状态栏与 Home 横条继续由外层统一管理。 */
+#app.app-phone{color:#111;background:#fff!important;min-height:0}
+#app.app-phone.page-recents{overflow:hidden}
+.app-phone .phone-topbar{display:grid;grid-template-columns:88px 1fr 88px;align-items:center;background:#fff;padding:0 20px;min-height:44px;flex-shrink:0}
+.app-phone .phone-topbar button{padding:0;color:#007aff;font-size:13px;min-height:44px;text-align:left;white-space:nowrap}
+.phone-topbar>span{text-align:center;font-size:15px;font-weight:600}
+.phone-recents-heading{padding:8px 20px 13px;background:#fff;flex-shrink:0}
+.app-phone .phone-recents-heading h1{font-size:32px;font-weight:750;letter-spacing:-.8px;margin:3px 0 17px;line-height:1.2;color:#111}
+.phone-recents-filter{display:flex;background:#efeff0;border-radius:9px;padding:2px}
+.phone-recents-filter button{flex:1;min-width:0;font-size:12px;min-height:29px;border-radius:7px;color:#666;padding:5px}
+.phone-recents-filter [aria-pressed=true]{background:#fff;box-shadow:0 1px 4px #0002;color:#111;font-weight:600}
+.phone-recents-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.phone-recents-scroll::-webkit-scrollbar{display:none}.phone-recents-list{list-style:none;padding:0 0 14px;margin:0}
+.phone-call{display:flex;align-items:center;gap:11px;padding:11px 20px;min-height:77px;position:relative}
+.phone-call:after{content:'';position:absolute;left:75px;right:20px;bottom:0;height:.5px;background:#e4e4e8}
+.phone-call-avatar{display:grid;place-items:center;width:43px;height:43px;flex:0 0 43px;border-radius:50%;background:#e5e5ea;color:#88898f;font-size:21px;font-weight:500}
+.phone-call-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}.phone-call-name{display:flex;align-items:center;gap:5px;font-size:16px;line-height:20px;font-weight:600;color:#111;white-space:nowrap}
+.phone-call-label{font-size:11px;line-height:16px;color:#8e8e93;display:flex;align-items:center;gap:5px;white-space:nowrap}.phone-call-label svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.phone-call-outgoing{display:inline-flex;color:#9c9ca2}.phone-call-outgoing svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.phone-call-when{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0;color:#8e8e93;font-size:12px;line-height:17px;font-variant-numeric:tabular-nums}.phone-call-time{font-size:10px}
+.phone-call-info{width:19px;height:19px;display:grid;place-items:center;flex:0 0 19px;border:1.5px solid #007aff;color:#007aff;border-radius:50%;font-size:13px;font-weight:600;line-height:1}
+.phone-call.is-missed .phone-call-name,.phone-call.is-missed .phone-call-when{color:#ff3b30}
+.app-phone .phone-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:9px 5px 5px;flex-shrink:0;border-top:1px solid #e5e5ea;background:#fafafaeF;backdrop-filter:blur(20px)}
+.app-phone .phone-tabs button{display:flex;align-items:center;flex-direction:column;gap:5px;color:#8e8e93;min-width:0;padding:0;min-height:42px}
+.app-phone .phone-tabs button>span{font-size:10px;line-height:14px;white-space:nowrap}.phone-tabs svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.phone-tabs [aria-current=page]{color:#007aff!important}
+@media(max-width:359px){.phone-call{padding-inline:14px;gap:8px}.phone-call:after{left:65px;right:14px}.phone-call-avatar{width:39px;height:39px;flex-basis:39px;font-size:19px}.phone-call-name{font-size:15px}.phone-call-info{width:18px;height:18px;flex-basis:18px}.phone-call-when{font-size:11px}}
+/* 隔离浏览器自动聚焦滚动，避免顶部状态栏和标题被手机外壳裁切。 */
+#phone:has(#app.app-phone),#phone:has(#app.app-phone) #device-content{overflow:clip}
+
+.app-phone .phone-tabs button:disabled{pointer-events:none;opacity:.6;cursor:default}

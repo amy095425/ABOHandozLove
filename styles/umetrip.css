@@ -1,0 +1,39 @@
+/* 航旅纵横独立页面：复用全局状态栏与 Home 横条。 */
+#app.app-umetrip{background:#f5f7f7;color:#222b2a;min-height:0;overflow:hidden;--accent:#25a477}
+#phone:has(#app.app-umetrip),#phone:has(#app.app-umetrip) #device-content{overflow:clip}
+.app-umetrip .flight-header{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));position:relative;align-items:center;gap:8px;padding:0 18px;min-height:54px;background:#fff;flex-shrink:0}
+.flight-header>span{font-size:13px;color:#737e7b;white-space:nowrap;text-align:center}.flight-header>strong{font-size:17px;justify-self:center;position:relative;line-height:54px;font-weight:650;white-space:nowrap}.flight-header>strong:after{content:'';position:absolute;bottom:3px;left:25%;right:25%;height:3px;background:#26ae7c;border-radius:3px}.flight-header>span:nth-child(3){padding-right:20px}.flight-header>span:last-child{position:absolute;right:14px;font-size:23px;font-weight:700;color:#333}
+.flight-types{display:flex;gap:12px;align-items:center;background:#fff;padding:5px 20px 12px;flex-shrink:0}.flight-types span{font-size:12px;padding:7px 15px;color:#8c9491;border-radius:8px;white-space:nowrap}.flight-types [aria-current=page]{color:#169b6c;font-weight:650;background:#e9f6f0}
+.flight-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:13px 14px 20px}.flight-scroll::-webkit-scrollbar{display:none}
+.flight-stats{border:1px solid #edf0ef;background:#fff;border-radius:15px;padding:19px 8px 0}.flight-stats-grid{display:flex}.flight-stat{display:flex;flex:1;min-width:0;flex-direction:column;align-items:center;gap:9px}.flight-stat svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.flight-stat.green{color:#22ad79}.flight-stat.blue{color:#4e9ce8}.flight-stat.orange{color:#edaa5e}.flight-stat strong{font-size:clamp(12px,3.6vw,17px);font-weight:650;letter-spacing:-.4px;color:#23312c;white-space:nowrap;font-variant-numeric:tabular-nums}.flight-stat small{color:#89938f;font-size:11px}.flight-stats>p{border-top:1px solid #f0f3f1;margin:17px 8px 0;padding:13px 0;text-align:center;color:#a2aaa6;font-size:10px}
+.flight-section-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:22px 1px 17px}.flight-section-title h1{font-size:18px;font-weight:650;letter-spacing:0;margin:0}.flight-section-title>div{display:flex;gap:14px;color:#808b85;font-size:11px}
+.flight-timeline{list-style:none;padding:0;margin:0}.flight-entry{display:flex;gap:13px;align-items:stretch;position:relative;padding:0 0 16px}.flight-date{width:51px;flex:0 0 51px;position:relative;text-align:left;padding-top:14px}.flight-date time{font-size:14px;font-weight:600;white-space:nowrap;display:block}.flight-date small{display:block;font-size:10px;color:#a1aaa5;margin-top:7px}.flight-date:after{content:'';position:absolute;left:20px;top:61px;bottom:-6px;border-left:1px dashed #d7e0db}.flight-date i{position:absolute;left:17px;top:57px;width:7px;height:7px;border-radius:50%;border:2px solid #b7c9bf;background:#f5f7f7;z-index:1}.flight-entry:last-child .flight-date:after{bottom:30px}
+.flight-card{flex:1;min-width:0;background:#fff;border:1px solid #edf1ee;border-radius:13px;padding:14px 13px}.app-umetrip .flight-card>header{display:flex;align-items:center;justify-content:space-between;min-height:0;padding:0;gap:7px;background:none}.flight-airline{display:flex;align-items:center;gap:6px;min-width:0;font-size:11px;line-height:1.5}.flight-airline>span:last-child{min-width:0}.flight-airline small{font-size:10px;color:#8e9893;white-space:nowrap}.flight-airline-logo{display:grid;place-items:center;width:19px;height:19px;flex:0 0 19px;font-size:7px;font-weight:700;border-radius:50%;color:#fff}.flight-airline-logo.red{background:#d75156}.flight-airline-logo.blue{background:#4085bf}.flight-review{font-size:9px;color:#a6aea9;white-space:nowrap}
+.flight-route{padding-top:17px;display:flex;flex-direction:column;gap:19px}.flight-route>div{display:flex;align-items:center;gap:12px;position:relative;font-size:13px;min-width:0}.flight-route time{font-weight:600;width:39px;flex-shrink:0;font-size:13px;font-variant-numeric:tabular-nums}.flight-route i{width:6px;height:6px;border:1.5px solid #6a8476;border-radius:50%;flex-shrink:0;position:relative}.flight-route>div:first-child i:after{content:'';position:absolute;left:1px;top:5px;width:1px;height:32px;background:#dce6df}.flight-route strong{font-size:13px;font-weight:500;overflow-wrap:anywhere}
+.app-umetrip .flight-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));flex-shrink:0;background:#fff;border-top:1px solid #e9efeb;padding:9px 5px 5px}.flight-tabs button{display:flex;align-items:center;flex-direction:column;gap:5px;min-width:0;font-size:10px;color:#7b8780;padding:0}.flight-tabs svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.flight-tabs [aria-current=page]{color:#18a26f;font-weight:650}.flight-tabs button:disabled{pointer-events:none;opacity:.6;cursor:default}
+@media(max-width:359px){.flight-scroll{padding-inline:10px}.flight-entry{gap:8px}.flight-date{width:45px;flex-basis:45px}.flight-card{padding:12px 9px}.flight-route>div{gap:9px}.flight-header{padding-inline:12px;gap:4px}.flight-types{gap:5px}.flight-review{font-size:8px}}
+/* 覆盖通用导航对 span 的大图标字号，标签保持紧凑。 */
+.app-umetrip .flight-tabs button>span{font-size:10px;line-height:14px}
+/* 动态与行程共用底栏，仅启用两项；空态和未来卡片均独立滚动。 */
+#app.app-umetrip.page-activity{background:#f5f5f5}
+.flight-dynamics-header{flex-shrink:0;padding:18px 20px;background:#fff}
+.app-umetrip .flight-dynamics-header h1{font-size:21px;font-weight:650;letter-spacing:0;margin:0;text-align:center}
+.flight-dynamics-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;padding:16px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.flight-dynamics-scroll::-webkit-scrollbar{display:none}
+.flight-dynamics-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding-bottom:60px;color:#adb3b0}
+.flight-dynamics-empty p{font-size:14px;margin:0}
+.flight-empty-icon{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#ebedec;color:#c5cbc7}
+.flight-empty-icon svg{width:43px;height:43px;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.flight-dynamic-card{border-radius:12px;background:white;padding:16px;margin-bottom:14px;border:1px solid #efefef}
+.app-umetrip .flight-dynamic-card>header{display:flex;align-items:center;gap:10px;min-height:0;padding:0;background:none}
+.flight-dynamic-icon{width:32px;height:32px;display:grid;place-items:center;flex-shrink:0;border-radius:50%;background:#24a676;color:#fff}
+.flight-dynamic-icon svg{width:21px;height:21px}
+.flight-dynamic-card header>strong{font-size:14px;font-weight:650}
+.flight-dynamic-card header>time{margin-left:auto;font-size:11px;color:#a0a6a2}
+.flight-dynamic-card h2{font-size:19px;font-weight:650;color:#202923;margin:19px 0 10px;line-height:1.4;overflow-wrap:anywhere}
+.flight-dynamic-card>p{font-size:14px;line-height:1.5;color:#505952;white-space:pre-wrap;overflow-wrap:anywhere;margin:0 0 18px}
+.flight-dynamic-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #eee;padding:14px 0 0;text-decoration:none;color:#27352c;font-size:13px}
+.flight-dynamic-footer>span{color:#a3aba6;font-size:17px}
+
+.app-umetrip .flight-home-nav{display:flex;align-items:center;flex-shrink:0;background:#fff;padding:0 16px}
+.app-umetrip .flight-home-nav button{min-height:44px;padding:0 8px 0 0;color:#169b6c;font-size:13px;text-align:left}
