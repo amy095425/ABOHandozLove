@@ -1,4 +1,4 @@
-import {gameProgress} from './gameProgress.js?v=chapter1-payment-fix-2';
+import {gameProgress} from './gameProgress.js?v=chapter2-ending-1';
 import {chapter1Threads} from '../data/threadsPostsData.js?v=chapter1-opening-1';
 export const readingDelay=content=>1500+Array.from(content).length*10;
 export function createChapter1Opening({progress=gameProgress,posts=chapter1Threads,setTimer=setTimeout,clearTimer=clearTimeout,now=Date.now}={}){

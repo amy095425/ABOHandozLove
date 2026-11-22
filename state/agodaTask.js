@@ -1,4 +1,4 @@
-import {gameProgress} from './gameProgress.js?v=chapter1-payment-fix-2';
+import {gameProgress} from './gameProgress.js?v=chapter2-ending-1';
 // 只检查新支付订单；不扫描历史订单，不产生任何玩家可见的结果提示。
 export function matchesChapter1AgodaOrder(order,currentChapter){
  if(currentChapter!==1||!order||order.status!=='已预订'||!order.signature)return false;

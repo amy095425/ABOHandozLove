@@ -1,6 +1,6 @@
-import {chapter1Alarm} from '../state/chapter1Alarm.js?v=chapter1-payment-fix-2';
+import {chapter1Alarm} from '../state/chapter1Alarm.js?v=chapter2-ending-1';
 import {chapter1AlarmText} from '../data/chapter1AlarmData.js?v=chapter1-alarm-1';
-import {formatStatusTime} from './StatusBar.js?v=unified-status-1';
+import {formatStatusTime} from './StatusBar.js?v=chapter2-ending-1';
 let installed=false,overlay,content,previousInert=false,timeTimer;
 function vibrate(pattern){try{globalThis.navigator?.vibrate?.(pattern);}catch{ /* 不支持震动或浏览器拦截时继续显示闹钟。 */ }}
 function hide(){clearInterval(timeTimer);timeTimer=null;if(!overlay)return;overlay.remove();overlay=null;vibrate(0);if(content)content.inert=previousInert;content=null;}

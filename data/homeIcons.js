@@ -4,5 +4,4 @@ export const homeIconOverrides = {
  phone: {iconImage:'./agoda/电话图标.png'},
  notes: {iconImage:'./agoda/备忘录图标.png?v=notes-image-2'},
  messages: {iconImage:'./agoda/短信图标.png'},
- wechat: {iconImage:'./agoda/微信图标.png'}
 };

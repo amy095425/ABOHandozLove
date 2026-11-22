@@ -1,8 +1,8 @@
-import {agodaTask} from '../state/agodaTask.js?v=chapter1-payment-fix-2';
-import {agodaStore as store,formatAgodaDate,agodaRegions} from './agodaStore.js?v=agoda-shuffle-1';
+import {agodaTask} from '../state/agodaTask.js?v=chapter2-ending-1';
+import {agodaStore as store,formatAgodaDate,agodaRegions} from './agodaStore.js?v=chapter2-ending-1';
 import {agodaGuests,agodaPaymentMethods} from '../data/agodaBookingData.js?v=agoda-booking-1';
-import {renderPayment,mountSignature,disposeSignature} from './taobaoPayment.js?v=agoda-booking-1';
-import {insertMessage} from '../data/messageStore.js?v=taobao-payment-1';
+import {renderPayment,mountSignature,disposeSignature} from './taobaoPayment.js?v=modal-headers-1';
+import {insertMessage} from '../data/messageStore.js?v=chapter2-ending-1';
 import {showNotification} from '../components/notifications.js?v=taobao-payment-1';
 const state=store.state,amount=c=>(c/100).toFixed(2);
 let root,e,timer,noticeTimer,success='',draft,occupancy;
@@ -26,7 +26,7 @@ function modal(){
  if(state.modal==='dates'){title='选择日期';body=`${dateFields('start','入住')}${dateFields('end','退房')}<p class="ag-error" role="alert">${e(state.error)}</p>${button('dates-apply','确认日期','','ag-primary')}`;}
  if(state.modal==='hotel'){const h=state.hotels.find(h=>h.id===state.hotelId);title=h.name;body=`<p class="ag-modal-caption">${e(h.region)} · ${'★'.repeat(h.stars)} · ${h.rating.toFixed(1)}分</p><h3>精选房型</h3>${[...h.rooms].sort((a,b)=>b.priceCents-a.priceCents).slice(0,3).map(r=>`<div class="ag-room"><div><strong>${e(r.name)}</strong><p>¥ ${amount(r.priceCents)} <small>/ 晚</small></p></div>${button('room','选择',`data-room="${r.index}"`,'ag-primary')}</div>`).join('')}`;}
  if(state.modal==='confirm'){const b=state.booking;title='确认预订';body=`<h3>${e(b.hotelName)}</h3><p>${e(b.roomName)}</p><p>预计入住人数：${b.adults}大人，${b.children}小孩</p><div class="ag-booking-summary"><p>${dates(b.checkIn,b.checkOut)}</p><p>¥ ${amount(b.priceCents)} / 晚 × ${b.nights}晚</p><strong>总金额 ¥ ${amount(b.totalCents)}</strong></div><fieldset class="ag-guests"><legend>选择入住人（可多选）</legend>${agodaGuests.map(g=>`<label><input type="checkbox" data-ag-guest="${g.id}" ${b.guestIds.includes(g.id)?'checked':''}><span><b>${e(g.name)} · ${g.gender}</b><small>${g.documentLabel}：${e(g.document)}</small><small>手机号：${e(g.phone)}</small></span></label>`).join('')}</fieldset><label class="ag-method">支付方式<select data-ag-method aria-label="支付方式">${agodaPaymentMethods.map(m=>`<option ${b.paymentMethod===m?'selected':''}>${m}</option>`).join('')}</select></label><p class="ag-error" role="alert">${e(state.error)}</p><p class="ag-countdown" data-ag-countdown aria-live="polite"></p><p class="ag-urgency" data-ag-urgency hidden>当前房型热门，请尽快下单，以免床位缺失！</p>${button('pay','立刻支付','','ag-primary')}`;}
- return `<div class="ag-backdrop" ${state.payment?'inert':''}><section class="ag-modal" role="dialog" aria-modal="true" aria-label="${e(title)}"><header><h2>${e(title)}</h2>${button('close','关闭')}</header><div class="ag-modal-scroll">${body}</div></section></div>`;
+ return `<div class="ag-backdrop" ${state.payment?'inert':''}><section class="ag-modal" role="dialog" aria-modal="true" aria-label="${e(title)}"><header class="modal-header"><h2>${e(title)}</h2>${button('close','关闭','','modal-close')}</header><div class="ag-modal-scroll">${body}</div></section></div>`;
 }
 function tick(){const count=root?.querySelector('[data-ag-countdown]'),warning=root?.querySelector('[data-ag-urgency]');if(!count||!warning)return;const seconds=store.remaining();count.textContent=seconds?`请在 ${seconds} 秒内完成下单`:'';warning.hidden=seconds>0;}
 function render(){

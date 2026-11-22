@@ -1,8 +1,8 @@
 import {taobaoAddresses} from '../data/taobaoPaymentData.js?v=taobao-payment-1';
-import {renderPayment,mountSignature,disposeSignature} from './taobaoPayment.js?v=agoda-booking-1';
-import {insertMessage} from '../data/messageStore.js?v=taobao-payment-1';
+import {renderPayment,mountSignature,disposeSignature} from './taobaoPayment.js?v=modal-headers-1';
+import {insertMessage} from '../data/messageStore.js?v=chapter2-ending-1';
 import {showNotification} from '../components/notifications.js?v=taobao-payment-1';
-import {taobaoStore as store,products,productById,categoryIndex,money} from './taobaoStore.js?v=taobao-payment-1';
+import {taobaoStore as store,products,productById,categoryIndex,money} from './taobaoStore.js?v=chapter2-ending-1';
 import {taobaoCategories as categories} from '../data/taobaoConfig.js?v=taobao-shop-1';
 const state=store.state;
 const shuffled=[...products];for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
@@ -38,7 +38,7 @@ function cart(){
 }
 function orders(){return `<div class="tb-scroll">${state.orders.length?state.orders.map(o=>`<article class="tb-order"><header><div><b>${e(o.orderId)}</b><small>${e(o.date)}</small></div><span class="${o.status==='已签收'?'tb-order-delivered':''}">${e(o.status||'待发货')}</span></header><div class="tb-order-items">${o.items.map(i=>`<p>${e(i.title)} <small>× ${i.quantity}</small></p>`).join('')}</div><p>共${o.items.reduce((n,i)=>n+i.quantity,0)}件商品</p><div class="tb-order-total">实付款：<strong>¥${money(o.totalCents)}</strong></div></article>`).join(''):empty('暂无订单')}</div>`;}
 function checkout(){const c=state.checkout,recipient=taobaoAddresses.find(a=>a.id===state.addressId);return `<section class="tb-checkout" ${state.payment?'inert':''}><header class="tb-header">${action('checkout-back','‹ 返回')}<h2>确认订单</h2><span></span></header><div class="tb-scroll"><button type="button" class="tb-recipient" data-tb-action="address-open" aria-label="切换收货地址"><b>${e(recipient.name)}　${e(recipient.phone)}</b><p>${e(recipient.address)}</p><small>点击切换收货地址 ›</small></button>${c.items.map(i=>`<div class="tb-checkout-line"><div><h3>${e(i.title)}</h3><p>¥${e(i.price)}　× ${i.quantity}</p></div></div>`).join('')}<div class="tb-payment-method"><b>付款方式</b><p>银行卡支付</p></div><p class="tb-simulation">本地模拟订单，不产生实际扣款</p></div><div class="tb-settlement"><span>总金额 <strong>¥${money(c.totalCents)}</strong></span>${action('pay','确认付款','','tb-primary')}</div></section>`;}
-function sheet(){const p=productById.get(state.sheet.productId);return `<div class="tb-sheet-backdrop" data-tb-action="sheet-close"><section class="tb-sheet" role="dialog" aria-modal="true" aria-label="购买商品"><div class="tb-sheet-scroll">${action('sheet-close','×','aria-label="关闭商品面板"','tb-sheet-close')}<h2>${e(p.title)}</h2><p class="tb-price">¥<strong>${e(p.price)}</strong></p><small>${e(p.shop)}</small><div class="tb-sheet-quantity" data-tb-sheet-quantity>${sheetQuantity()}</div></div><footer>${cartControlSlot(p.id,true)}${action('buy','立即购买','','tb-primary')}</footer></section></div>`;}
+function sheet(){const p=productById.get(state.sheet.productId);return `<div class="tb-sheet-backdrop" data-tb-action="sheet-close"><section class="tb-sheet" role="dialog" aria-modal="true" aria-label="购买商品"><header class="modal-header"><h2>购买商品</h2>${action('sheet-close','关闭','aria-label="关闭商品面板"','modal-close')}</header><div class="tb-sheet-scroll"><h2>${e(p.title)}</h2><p class="tb-price">¥<strong>${e(p.price)}</strong></p><small>${e(p.shop)}</small><div class="tb-sheet-quantity" data-tb-sheet-quantity>${sheetQuantity()}</div></div><footer>${cartControlSlot(p.id,true)}${action('buy','立即购买','','tb-primary')}</footer></section></div>`;}
 function view(){
  disposeSignature();
  const title={home:'淘宝',category:'分类',cart:'购物车',orders:'我的订单'}[state.activeTab];

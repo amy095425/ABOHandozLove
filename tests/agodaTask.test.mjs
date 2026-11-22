@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGameProgress} from '../state/gameProgress.js?v=chapter1-payment-fix-2';
-import {createAgodaTask,matchesChapter1AgodaOrder,triggerChapter1NextStage} from '../state/agodaTask.js?v=chapter1-payment-fix-2';
-import {createAgodaStore} from '../apps/agodaStore.js?v=agoda-regions-1';
+import {createGameProgress} from '../state/gameProgress.js?v=chapter2-ending-1';
+import {createAgodaTask,matchesChapter1AgodaOrder,triggerChapter1NextStage} from '../state/agodaTask.js?v=chapter2-ending-1';
+import {createAgodaStore} from '../apps/agodaStore.js?v=chapter2-ending-1';
 function setup(){const progress=createGameProgress(),jobs=[];let fired=0;const task=createAgodaTask({progress,onNextStage:()=>fired++,setTimer:(fn,delay)=>{jobs.push({fn,delay});return jobs.length;},clearTimer:id=>{jobs[id-1]=null;}});return {progress,task,jobs,get fired(){return fired;}};}
 function paidOrder({hotel=1,room=1,start='2030-10-07',end='2030-10-10',kim=true}={}){const store=createAgodaStore({random:()=>.5});store.enterExplore();store.setDates(start,end);store.openHotel(hotel);store.selectRoom(room);if(kim)store.toggleGuest('kim',true);store.beginPayment();store.selectCard('mastercard');store.verifyPassword('060105');store.markSigned(true);const order=store.pay('signature');assert.ok(order);assert.equal(store.state.orders[0],order);return order;}
 test('新支付订单完全匹配才设置全局标记，2秒回调仅一次',()=>{const s=setup(),order=paidOrder();assert.equal(s.progress.state.agodaTaskCompleted,false);assert.ok(s.task.checkPaidOrder(order));assert.equal(s.progress.state.agodaTaskCompleted,true);assert.equal(s.fired,0);assert.equal(s.jobs[0].delay,2000);assert.equal(s.task.checkPaidOrder(order),false);s.jobs[0].fn();assert.equal(s.fired,1);assert.equal(s.task.checkPaidOrder(order),false);assert.equal(s.jobs.length,1);assert.equal(s.progress.state.currentChapter,1);s.task.dispose();});

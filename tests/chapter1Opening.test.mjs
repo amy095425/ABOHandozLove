@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGameProgress} from '../state/gameProgress.js?v=chapter1-payment-fix-2';
-import {createChapter1Opening,readingDelay} from '../state/chapter1Opening.js?v=chapter1-payment-fix-2';
+import {createGameProgress} from '../state/gameProgress.js?v=chapter2-ending-1';
+import {createChapter1Opening,readingDelay} from '../state/chapter1Opening.js?v=chapter2-ending-1';
 import {chapter1Threads} from '../data/threadsPostsData.js?v=chapter1-opening-1';
 function virtualClock(){
  let now=0,id=0;const jobs=new Map();

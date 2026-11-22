@@ -1,3 +1,4 @@
+import {gameProgress,getGlobalSystemDate,getSystemDateKey} from '../state/gameProgress.js?v=chapter2-ending-1';
 // 仅负责手机最外层流程；不读取或修改 App 的内部数据。
 const PASSCODE = '2499';
 const ERROR_DURATION = 1600;
@@ -92,8 +93,8 @@ const camera = document.querySelector('#camera-preview');
 document.querySelector('.camera').addEventListener('click', () => {camera.hidden=false;lock.inert=true;document.querySelector('#close-camera').focus();});
 document.querySelector('#close-camera').addEventListener('click', () => {camera.hidden=true;lock.inert=false;document.querySelector('.camera').focus();});
 function updateClock() {
-  const now = new Date();
+  const now = getGlobalSystemDate();
   document.querySelector('#lock-time').textContent = now.toLocaleTimeString('zh-CN', {hour:'2-digit',minute:'2-digit',hour12:false});
   document.querySelector('#lock-date').textContent = now.toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'long'});
 }
-updateClock(); setInterval(updateClock, 1000); setState('lock');
+updateClock(); gameProgress.subscribe(updateClock); setState('lock');

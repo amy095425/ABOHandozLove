@@ -27,3 +27,29 @@
 .rb-tabs .rb-add svg{background:#ed2448;color:#fff;border-radius:8px;width:32px;padding:3px}
 
 .rb-user { margin-top: 9px; }
+
+.chapter3-redbook-notice .chapter1-notice-banner{background:#fff;color:#111;border:1px solid #eee}
+.chapter1-notice-banner>.rb-notice-logo{display:flex;justify-content:center;align-items:center;flex:0 0 38px;width:38px;height:38px;min-width:38px;max-width:38px;padding:0;overflow:hidden;white-space:nowrap;background:#ff2442;color:#fff;border-radius:8px;font-size:12px;line-height:1;font-weight:700}
+button.rb-card{text-align:left;padding:0;cursor:pointer;border:0;font:inherit}
+#app.app-redbook.page-redbook-story{background:white!important}
+.app-redbook .rb-story-top{display:flex;align-items:center;gap:10px;background:#fff;padding:10px 14px;flex-shrink:0;border-bottom:1px solid #eee}
+.rb-story-top>button:first-child{font-size:30px;min-width:32px;color:#333}
+.rb-story-avatar{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:50%;background:#e7e7e7;color:#777;font-size:13px}
+.rb-story-top strong{flex:1;font-size:14px;overflow-wrap:anywhere}
+.rb-story-top [data-red-toggle]{border:1px solid #ff2442;color:#ff2442;border-radius:18px;padding:7px 14px;font-size:12px}
+.rb-story-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:20px 16px;scrollbar-width:none;overscroll-behavior:contain}
+.rb-story-scroll::-webkit-scrollbar{display:none}
+.rb-story-scroll h1{font-size:21px;line-height:1.5;margin:0 0 16px}
+.rb-story-content,.rb-story-comment p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8;margin:6px 0;font-size:14px}
+.rb-story-gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 0 16px}
+.rb-story-gallery img{flex:0 0 86%;width:86%;max-height:420px;object-fit:contain;background:#f6f6f6;border-radius:12px;scroll-snap-align:start}
+.rb-story-comments{margin-top:24px}
+.rb-story-comment{display:flex;align-items:flex-start;gap:10px;padding:14px 0;border-bottom:1px solid #f3f3f3}
+.rb-story-comment>div{flex:1;min-width:0}.rb-story-comment strong{font-size:12px;color:#888;font-weight:500}.rb-story-comment small{font-size:10px;color:#ff2442}.rb-story-comment.is-new{animation:rb-comment-in .3s ease-out}
+.rb-story-actions{display:flex;justify-content:space-around;gap:8px;padding:12px 8px calc(36px + env(safe-area-inset-bottom,0px));border-top:1px solid #eee;background:white;flex-shrink:0}
+.rb-story-actions button{display:flex;align-items:center;gap:5px;font-size:12px}.rb-story-actions svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.rb-story-actions [aria-pressed=true]{color:#ff2442}.rb-story-actions [aria-pressed=true] svg{fill:#ff244222}
+@keyframes rb-comment-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.rb-story-comment.is-new{animation:none}}
+
+.chapter3-redbook-notice .notice-title{color:#111;font-weight:700}
+.chapter3-redbook-notice .notice-preview{color:#333;font-weight:400}

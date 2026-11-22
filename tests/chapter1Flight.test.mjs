@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGameProgress} from '../state/gameProgress.js?v=chapter1-payment-fix-2';
-import {createChapter1Opening,readingDelay} from '../state/chapter1Opening.js?v=chapter1-payment-fix-2';
-import {createChapter1Flight} from '../state/chapter1Flight.js?v=chapter1-payment-fix-2';
+import {createGameProgress} from '../state/gameProgress.js?v=chapter2-ending-1';
+import {createChapter1Opening,readingDelay} from '../state/chapter1Opening.js?v=chapter2-ending-1';
+import {createChapter1Flight} from '../state/chapter1Flight.js?v=chapter2-ending-1';
 import {chapter1Threads} from '../data/threadsPostsData.js?v=chapter1-opening-1';
 import {chapter1FlightMessage,chapter1FlightPreview} from '../data/flightOpeningData.js?v=chapter1-flight-1';
 function clock(){let time=0,id=0;const jobs=new Map();return {setTimer:(fn,delay)=>{jobs.set(++id,{fn,at:time+delay});return id;},clearTimer:id=>jobs.delete(id),now:()=>time,tick(ms){const end=time+ms;while(true){const next=[...jobs].filter(([,j])=>j.at<=end).sort((a,b)=>a[1].at-b[1].at)[0];if(!next)break;time=next[1].at;jobs.delete(next[0]);next[1].fn();}time=end;},pending:()=>jobs.size};}

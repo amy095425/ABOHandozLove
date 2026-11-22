@@ -22,3 +22,13 @@
 .app-youtube .yt-tabs button>span{font-size:10px;line-height:14px}
 .app-youtube .yt-tabs [aria-current=page]{color:#0f0f0f}.yt-tabs [aria-current=page] svg{fill:currentColor}
 .app-youtube .yt-tabs button:disabled{pointer-events:none;opacity:.5}
+
+.chapter2-youtube-notice .chapter1-notice-banner{background:#fff;color:#202020;border:1px solid #eee}
+.youtube-notice-logo{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px}
+.youtube-notice-logo svg{width:38px;height:28px}
+.youtube-reservation-overlay{position:absolute;inset:0;z-index:25001;display:flex;align-items:center;justify-content:center;background:#0006;padding:22px;box-sizing:border-box}
+.youtube-reservation-card{width:100%;max-width:380px;background:#fff;color:#111;border-radius:22px;padding:24px;box-shadow:0 14px 55px #0003;box-sizing:border-box;max-height:90%;overflow:auto}
+.youtube-reservation-channel{display:flex;align-items:center;gap:12px;font-size:16px}
+.youtube-reservation-avatar{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#e7e7e7;color:#666;font-size:13px;font-weight:700}
+.youtube-reservation-card p{font-size:17px;font-weight:600;line-height:1.8;margin:24px 0;overflow-wrap:anywhere}
+.youtube-reservation-card button{display:block;width:100%;padding:14px;background:#f03;color:#fff;border-radius:12px;font-size:16px;font-weight:600}

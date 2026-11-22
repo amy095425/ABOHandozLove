@@ -1,3 +1,4 @@
+import {gameProgress,getGlobalSystemDate,getSystemDateKey} from '../state/gameProgress.js?v=chapter2-ending-1';
 import {initialAgodaOrders} from '../data/agodaInitialOrders.js?v=agoda-shuffle-1';
 import {agodaHotels} from '../data/agodaData.js?v=agoda-shuffle-1';
 import {agodaGuests,agodaPaymentMethods} from '../data/agodaBookingData.js?v=agoda-booking-1';
@@ -27,7 +28,7 @@ export function createAgodaStore({random=Math.random,now=Date.now}={}){
  function markSigned(signed){if(state.payment?.stage==='signature')state.payment.signed=!!signed;}
  function cancelPayment(){state.payment=null;}
  function close(){state.modal=null;state.booking=null;state.payment=null;state.error='';}
- function pay(signature){const b=state.booking,p=state.payment;if(!b||!b.guestIds.length||p?.stage!=='signature'||!p.signed||!signature)return null;const card=taobaoBankCards.find(c=>c.id===p.cardId);if(!card)return null;const order={...b,guestIds:[...b.guestIds],guests:agodaGuests.filter(g=>b.guestIds.includes(g.id)).map(g=>({...g})),bankCard:{id:card.id,name:card.name,number:card.number,holder:card.holder},signature,orderId:`AG${now()}${state.orders.length+1}`,date:new Date(now()).toLocaleString('zh-CN',{hour12:false}),status:'已预订'};state.orders.unshift(order);close();return order;}
+ function pay(signature){const b=state.booking,p=state.payment;if(!b||!b.guestIds.length||p?.stage!=='signature'||!p.signed||!signature)return null;const card=taobaoBankCards.find(c=>c.id===p.cardId);if(!card)return null;const order={...b,guestIds:[...b.guestIds],guests:agodaGuests.filter(g=>b.guestIds.includes(g.id)).map(g=>({...g})),bankCard:{id:card.id,name:card.name,number:card.number,holder:card.holder},signature,orderId:`AG${now()}${state.orders.length+1}`,date:getGlobalSystemDate().toLocaleString('zh-CN',{hour12:false}),status:'已预订'};state.orders.unshift(order);close();return order;}
  function remaining(){return state.booking?Math.max(0,Math.ceil((state.booking.deadline-now())/1000)):0;}
  return {state,enterExplore,setOccupancy,selectRegion,filteredHotels,setDates,openHotel,selectRoom,toggleGuest,setMethod,beginPayment,selectCard,verifyPassword,markSigned,cancelPayment,close,pay,remaining};
 }

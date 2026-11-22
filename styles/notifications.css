@@ -6,3 +6,6 @@
 @keyframes notification-enter{from{transform:translateY(-120%);opacity:0}to{transform:translateY(0);opacity:1}}
 .sms-thread{display:flex!important;align-items:center;gap:10px;text-align:left;width:100%;min-width:0}.sms-thread>span:nth-child(2){flex:1;min-width:0}.sms-thread strong{font-size:15px}.sms-thread p{font-size:13px;color:#888;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin:6px 0}.sms-unread{width:8px;height:8px;border-radius:50%;flex:none}.sms-unread.is-unread{background:#007aff}.sms-message{max-width:85%;margin-bottom:18px}.sms-message small{display:block;text-align:center;color:#aaa;font-size:11px;margin-bottom:8px}.sms-message .bubble{max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere}
 @media(prefers-reduced-motion:reduce){.global-notification{animation:none}}
+
+.global-notification>strong{color:#111;font-weight:700}
+.global-notification>span{color:#333;font-weight:400}

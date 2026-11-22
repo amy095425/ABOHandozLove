@@ -1,3 +1,5 @@
+import {chapter2Flight} from '../state/chapter2Flight.js?v=chapter3-douban-1';
+import {checkinOptions} from '../data/chapter2FlightData.js?v=chapter2-flight-1';
 import {flightHistory,flightSummary,flightDynamics,flightCopy as copy} from '../data/umetrip.js?v=umetrip-dynamics-1';
 const paths={
  tower:'<path d="M12 3v18M8 21h8M8 17l4-7 4 7M7 6a7 7 0 0 0 0 9M17 6a7 7 0 0 1 0 9M4 3a11 11 0 0 0 0 15M20 3a11 11 0 0 1 0 15"/>',
@@ -24,7 +26,7 @@ export function renderFlightDynamics(e,items=flightDynamics){
  if(!items.length)return `<header class="flight-dynamics-header"><h1>动态</h1></header><div class="flight-dynamics-scroll flight-dynamics-empty" role="status"><div class="flight-empty-icon">${svg('activity')}</div><p>暂无最新动态</p></div>`;
  return `<header class="flight-dynamics-header"><h1>动态</h1></header><div class="flight-dynamics-scroll">${items.map(item=>{
   const link=String(item.link||'#'),validLink=link!=='#'&&/^(https?:\/\/|#|\.\.?\/|\/)/.test(link);
-  return `<article class="flight-dynamic-card" data-flight-dynamic="${e(item.id)}"><header><span class="flight-dynamic-icon">${plane}</span><strong>行程</strong><time>${e(item.time)}</time></header><h2>${e(item.title)}</h2><p>${e(item.content)}</p><a class="flight-dynamic-footer" ${validLink?`href="${e(link)}"`:'aria-disabled="true"'}><strong>查看详情</strong><span aria-hidden="true">&gt;</span></a></article>`;
+  return `<article class="flight-dynamic-card" data-flight-dynamic="${e(item.id)}"><header><span class="flight-dynamic-icon">${plane}</span><strong>行程</strong><time>${e(item.time)}</time></header><h2>${e(item.title)}</h2><p>${e(item.content)}</p>${item.checkInAction?'<button type="button" class="flight-checkin-button" data-checkin-open>立即确认值机状态</button>':''}<a class="flight-dynamic-footer" ${validLink?`href="${e(link)}"`:'aria-disabled="true"'}><strong>查看详情</strong><span aria-hidden="true">&gt;</span></a></article>`;
  }).join('')}</div>`;
 }
 function navigation(e,activeTab){return `<nav class="tabs flight-tabs" aria-label="航旅纵横导航">${[['home','首页'],['journey','行程'],['experience','经验'],['activity','动态'],['me','我']].map(([id,label])=>{const enabled=['journey','activity'].includes(id);return `<button type="button" ${enabled?`data-tab="${e(label)}"`:'disabled aria-disabled="true"'} ${activeTab===id?'aria-current="page"':''}>${svg(id)}<span>${e(label)}</span></button>`;}).join('')}</nav>`;}
@@ -32,3 +34,14 @@ export function renderUmetrip(e,activeTab='journey'){
  const selected=activeTab==='activity'?'activity':'journey';
  return '<div class="flight-home-nav"><button type="button" data-action="home" aria-label="返回主屏幕">‹ 主屏幕</button></div>'+(selected==='activity'?renderFlightDynamics(e):renderJourney(e))+navigation(e,selected);
 }
+
+let unsubscribeCheckin;
+const mountedCheckin=new WeakSet();
+export function mountFlightCheckin(root){
+ unsubscribeCheckin?.();
+ function updateSheet(){root.querySelector('.flight-checkin-backdrop')?.remove();for(const child of root.children)child.inert=chapter2Flight.state.sheetOpen;if(!root.classList.contains('page-activity')||!chapter2Flight.state.sheetOpen)return;root.insertAdjacentHTML('beforeend',`<div class="flight-checkin-backdrop"><section class="flight-checkin-sheet" role="dialog" aria-modal="true" aria-label="确认值机状态"><header class="modal-header"><h2>选择值机状态</h2><button type="button" class="modal-close" data-checkin-close>取消</button></header><div class="flight-checkin-options">${checkinOptions.map((option,index)=>`<button type="button" data-checkin-option="${index}">${option}</button>`).join('')}</div></section></div>`);root.querySelector('.flight-checkin-sheet button')?.focus({preventScroll:true});}
+ unsubscribeCheckin=chapter2Flight.subscribe(updateSheet);updateSheet();if(mountedCheckin.has(root))return;mountedCheckin.add(root);
+ root.addEventListener('keydown',event=>{if(!root.classList.contains('app-umetrip')||!chapter2Flight.state.sheetOpen)return;if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();chapter2Flight.closeSheet();}},true);
+ root.addEventListener('click',event=>{if(!root.classList.contains('app-umetrip'))return;const b=event.target.closest('[data-checkin-open],[data-checkin-close],[data-checkin-option]');if(!b)return;if(b.hasAttribute('data-checkin-open'))chapter2Flight.openSheet();else if(b.hasAttribute('data-checkin-close'))chapter2Flight.closeSheet();else chapter2Flight.selectCheckin(checkinOptions[Number(b.dataset.checkinOption)]);});
+}
+export function closeFlightCheckin(){unsubscribeCheckin?.();unsubscribeCheckin=null;if(chapter2Flight.state.sheetOpen)chapter2Flight.closeSheet();}

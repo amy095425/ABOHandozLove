@@ -1,10 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
-import {createGameProgress} from '../state/gameProgress.js?v=chapter1-payment-fix-2';
-import {createAgodaTask} from '../state/agodaTask.js?v=chapter1-payment-fix-2';
-import {createChapter1Kkt} from '../state/chapter1Kkt.js?v=chapter1-kkt-details-3';
-import {createAgodaStore} from '../apps/agodaStore.js?v=agoda-shuffle-1';
+import {createGameProgress} from '../state/gameProgress.js?v=chapter2-ending-1';
+import {createAgodaTask} from '../state/agodaTask.js?v=chapter2-ending-1';
+import {createChapter1Kkt} from '../state/chapter1Kkt.js?v=chapter2-ending-1';
+import {createAgodaStore} from '../apps/agodaStore.js?v=chapter2-ending-1';
 
 // Exercise a real paid order through the shared progress subscription and KKT timer.
 test('Agoda签名支付完成后5秒触发KKT，点击后推送酒店确认消息',()=>{
@@ -34,9 +34,9 @@ test('所有生产模块共用同一版本的全局进度，入口引用更新�
   const source=readFileSync(new URL('../'+folder+'/'+file,import.meta.url),'utf8');
   for(const match of source.matchAll(/from\s*['"]([^'"]*gameProgress\.js[^'"]*)['"]/g))urls.push(new URL(match[1],new URL('../'+folder+'/'+file,import.meta.url)).href);
  }
- assert.ok(urls.length>1);assert.equal(new Set(urls).size,1);assert.ok(urls[0].endsWith('?v=chapter1-payment-fix-2'));
+ assert.ok(urls.length>1);assert.equal(new Set(urls).size,1);assert.ok(urls[0].endsWith('?v=chapter2-ending-1'));
  const main=readFileSync(new URL('../apps/main.js?v=chapter1-payment-fix-2',import.meta.url),'utf8');
- assert.ok(main.includes('./agoda.js?v=chapter1-payment-fix-2'));
- assert.ok(main.includes('../components/chapter1Notice.js?v=chapter1-kkt-details-3'));
- assert.ok(readFileSync(new URL('../index.html',import.meta.url),'utf8').includes('./apps/main.js?v=chapter1-kkt-details-3'));
+ assert.ok(main.includes('./agoda.js?v=modal-headers-1'));
+ assert.ok(main.includes('../components/chapter1Notice.js?v=notification-layout-1'));
+ assert.ok(readFileSync(new URL('../index.html',import.meta.url),'utf8').includes('./apps/main.js?v=single-home-1'));
 });

@@ -28,3 +28,29 @@
 @keyframes calendar-appear{from{transform:translateY(25px);opacity:.4}to{transform:translateY(0);opacity:1}}
 @media(prefers-reduced-motion:reduce){.calendar-modal{animation:none}}
 @media(max-width:359px){.calendar-scroll{padding-inline:13px}.app-calendar .calendar-heading h1{font-size:26px}.calendar-day{font-size:18px}.calendar-day>span{width:35px;height:35px}.calendar-selection strong{font-size:14px}}
+
+.calendar-new-event{width:min(90%,380px);padding:22px;background:white;border-radius:20px;box-shadow:0 12px 48px #0002}.calendar-new-event header{display:flex;justify-content:space-between;align-items:center;padding:0}.calendar-new-event h2{font-size:20px;margin:0}.calendar-new-event h3{font-size:18px;line-height:1.6;margin-top:28px}.calendar-new-event p{color:#777}.calendar-new-event .calendar-event-done{color:#ff3b30;font-size:27px;font-weight:700;padding:8px 12px}
+.chapter1-calendar-prompt{display:flex;align-items:center;justify-content:center;background:#0005}.chapter1-calendar-alert{width:min(86%,320px);background:#f9f9f9ee;backdrop-filter:blur(20px);border-radius:16px;text-align:center;overflow:hidden;color:#111}.chapter1-calendar-alert h2{font-size:18px;margin:24px 20px 8px}.chapter1-calendar-alert p{font-size:14px;line-height:1.6;margin:0 22px 24px}.chapter1-calendar-alert footer{display:flex;border-top:1px solid #ddd}.chapter1-calendar-alert button{flex:1;color:#007aff;padding:16px;background:transparent;font-size:16px}.chapter1-calendar-alert button+button{border-left:1px solid #ddd;font-weight:600}
+
+/* 新建行程卡片以整个屏幕为基准居中。 */
+.calendar-modal-backdrop:has(> .calendar-new-event){
+ position:fixed;
+ inset:0;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+ box-sizing:border-box;
+}
+.calendar-modal-backdrop > .calendar-new-event{
+ width:min(100%,380px);
+ margin:0;
+ max-height:calc(100dvh - 40px);
+ overflow-y:auto;
+ box-sizing:border-box;
+}
+
+.calendar-modal-backdrop:has(>.calendar-youtube-confirm){align-items:center;justify-content:center;padding:20px}
+.calendar-youtube-confirm{border-radius:18px;max-width:380px}
+.calendar-saved-event{margin:12px 16px;padding:16px;border-left:4px solid #ff3b30;border-radius:12px;background:#fff;font-size:14px;line-height:1.6}
+.calendar-saved-event p{color:#888;margin:6px 0 0}

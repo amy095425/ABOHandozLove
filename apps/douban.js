@@ -24,20 +24,15 @@ function actionButton(action, key, e, extra='') {
 export function renderDoubanTabs() {
   return `<nav class="tabs douban-tabs" aria-label="豆瓣导航">${['首页','书影音','小组','我'].map((label,i)=>`<button type="button" ${i?'disabled aria-disabled="true"':'data-tab="首页" aria-current="page"'}>${svg(['home','books','group','me'][i])}<span>${label}</span></button>`).join('')}</nav>`;
 }
-export function renderDoubanFeed(posts, e) {
-  return `<div class="scroll douban-feed" aria-label="豆瓣首页帖子列表">${posts.map(post => `
+export function renderDoubanFeed(posts, e, leadingCard='') {
+  return `<div class="scroll douban-feed" aria-label="豆瓣首页帖子列表">${leadingCard}${posts.map(post => `
     <article class="douban-post" data-post-id="${e(post.id)}" aria-labelledby="douban-title-${e(post.id)}">
       <div class="douban-post-group"><span class="douban-group-avatar" style="background:${avatarColor(post.group)}" aria-hidden="true">${e(initials(post.group))}</span><span>${e(post.group)} · ${e(post.tag)}</span></div>
-      <div class="douban-post-author"><img src="${e(post.avatar)}" alt="${e(post.author)}的头像" width="34" height="34"><span>${e(post.author)}</span>${actionButton('follow','follow:'+post.author,e)}</div>
+      <div class="douban-post-author">${post.avatar?`<img src="${e(post.avatar)}" alt="${e(post.author)}的头像" width="34" height="34">`:`<span class="douban-comment-avatar" style="background:${post.avatarColor||avatarColor(post.author)}">${e(initials(post.author))}</span>`}<span>${e(post.author)}</span>${actionButton('follow','follow:'+post.author,e)}</div>
       <h2 id="douban-title-${e(post.id)}" class="douban-post-title">${e(post.title)}</h2>
       ${post.content?`<p class="douban-post-content">${e(post.content)}</p>`:''}
       <div class="douban-post-actions" aria-label="帖子互动">${['like','collect','share'].map(action=>actionButton(action,post.id+':'+action,e)).join('')}</div>
-      ${post.comments.length?`<section class="douban-comments" aria-label="${e(post.title)}的评论">${post.comments.map(comment => `
-        <div class="douban-comment" data-floor="${comment.floor}">
-          <span class="douban-comment-avatar" style="background:${avatarColor(comment.author)}" aria-hidden="true">${e(initials(comment.author))}</span>
-          <div class="douban-comment-copy"><div class="douban-comment-meta"><span class="douban-comment-name">${e(comment.author)}</span><span class="douban-floor">${comment.floor}楼</span></div><p>${comment.replyTo?`回复 @${e(comment.replyTo)}：`:''}${e(comment.content)}</p></div>
-          ${actionButton('comment',post.id+':comment:'+comment.floor,e)}
-        </div>`).join('')}</section>`:''}
+      ${post.comments.length?`<section class="douban-comments" aria-label="${e(post.title)}的评论">${post.comments.map(comment=>renderDoubanComment(post,comment,e)).join('')}</section>`:''}
     </article>`).join('')}</div>`;
 }
 // 只处理豆瓣自己的按钮，不干预全局导航和其他 App。
@@ -50,3 +45,15 @@ document.addEventListener('click',event=>{
   button.setAttribute('aria-pressed',String(pressed));
   button.querySelector('span').textContent=labels[action][Number(pressed)];
 });
+
+export function renderDoubanComment(post,comment,e){return `
+        <div class="douban-comment" data-floor="${comment.floor}">
+          <span class="douban-comment-avatar" style="background:${avatarColor(comment.author)}" aria-hidden="true">${e(initials(comment.author))}</span>
+          <div class="douban-comment-copy"><div class="douban-comment-meta"><span class="douban-comment-name">${e(comment.author)}</span><span class="douban-floor">${comment.floor}楼</span></div><p>${comment.replyTo?`回复 @${e(comment.replyTo)}：`:''}${e(comment.content)}</p>${comment.image?`<img class="douban-comment-image" src="${e(comment.image)}" alt="${e(comment.author)}分享的图片" loading="lazy">`:''}</div>
+          ${actionButton('comment',post.id+':comment:'+comment.floor,e)}
+        </div>`;}
+
+// 首页只展示摘要；完整正文和评论由详情页负责。
+export function renderDoubanPreview(post,e){
+ return `<button type="button" class="douban-post douban-story-preview" data-action="douban-story" data-story-post="${e(post.id)}" aria-label="打开帖子：${e(post.title)}"><span class="douban-preview-author"><span class="douban-comment-avatar" style="background:${post.avatarColor||avatarColor(post.author)}" aria-hidden="true">${e(initials(post.author))}</span><span>${e(post.author)}</span></span><strong class="douban-post-title">${e(post.title)}</strong><span class="douban-post-content douban-preview-summary">${e(post.content)}</span></button>`;
+}

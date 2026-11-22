@@ -37,3 +37,11 @@
 
 .app-umetrip .flight-home-nav{display:flex;align-items:center;flex-shrink:0;background:#fff;padding:0 16px}
 .app-umetrip .flight-home-nav button{min-height:44px;padding:0 8px 0 0;color:#169b6c;font-size:13px;text-align:left}
+
+.flight-checkin-button{display:block;width:100%;padding:13px 16px;border-radius:10px;background:#ee4545;color:#fff;font-size:15px;font-weight:600;margin:0 0 15px}
+.flight-checkin-backdrop{position:absolute;inset:0;z-index:9000;display:flex;align-items:flex-end;justify-content:center;background:#0006}
+.flight-checkin-sheet{width:100%;padding:20px 20px calc(35px + env(safe-area-inset-bottom,0px));border-radius:24px 24px 0 0;background:#f8f9fa;box-shadow:0 -8px 35px #0002;max-height:90%;overflow:auto}
+.flight-checkin-sheet h2{font-size:19px;text-align:center;margin:0 0 20px}
+.flight-checkin-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.flight-checkin-sheet button{padding:15px;border-radius:10px;background:#fff;color:#263c32;font-size:15px}
+.flight-checkin-sheet>button{margin-top:16px;width:100%;color:#777}

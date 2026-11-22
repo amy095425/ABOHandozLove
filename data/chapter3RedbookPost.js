@@ -1,0 +1,30 @@
+export const chapter3RedComments=[
+ {floor:1,author:'用户1',content:'请问图2图3是什么啊？'},
+ {floor:1.1,author:'博主',replyTo:'用户1',content:'是今天新认识的爸爸妈妈🥰因为同样是中国人所以和他们多聊了几句'},
+ {floor:2,author:'用户2',content:'这两张图让我想起我认识的一对故人'},
+ {floor:3,author:'用户3',content:'金道勋大人韩振大人我能冒昧地请求你们从蒙氏园出来吗？'},
+ {floor:4,author:'用户4',content:'p3那个小孩是谁？@涵涵一家在首尔'},
+ {floor:4.1,author:'博主',replyTo:'用户4',content:'😳那是我自来熟的女儿'},
+ {floor:5,author:'用户5',content:'可以请问一下博主p2那两个人是什么关系啊？有摄像机跟着他们拍摄吗？'},
+ {floor:5.1,author:'博主',replyTo:'用户5',content:'😳当然是夫妻啊，没有摄像机，你们这群人真奇怪……'},
+ {floor:6,author:'用户6',content:'可以看看p2他们孩子长什么样吗？'},
+ {floor:6.1,author:'博主',replyTo:'用户6',content:'他们没带孩子来，而且这是人家个人隐私吧'},
+ {floor:7,author:'用户7',content:'事到如今博主还没意识到事情的严重性'},
+ {floor:8,author:'用户8',content:'两年没见牛蛙一起出门的偶遇贴了，结果今天一刷就是我家产有孩子了🧏‍'},
+ {floor:9,author:'用户9',content:'我以为我是母父的独生卵呢……'},
+ {floor:10,author:'用户10',content:'收留心碎吐司妈，2031年12月27日hybe新男团hsiond即将出道，六人男团全AB组合，接生机不可失时不再来'},
+ {floor:11,author:'用户11',content:'李涛这是不是也是带娃综艺的一部分'},
+ {floor:12,author:'用户12',content:'一秒解码来自中国的Omega妈妈🤗'},
+ {floor:13,author:'用户13',content:'卧槽，这么糊的两张图，路人能不能不要在这里飒飒飒了，金道勋的肩很宽的这个p3骨架看起来这么小还驼背怎么会是金道勋啊😅'},
+ {floor:14,author:'用户14',content:'金道勋这个帽子我都看他戴过一万回了……'},
+ {floor:15,author:'用户15',content:'所以韩振真的抽空去生了一个😳他O装B装了这么多年？'},
+ {floor:16,author:'用户16',content:'七年都没一个粉丝发现吗？求抑制剂和喷雾链接'},
+ {floor:17,author:'用户17',content:'那Han Seung-hoon是……'},
+ {floor:18,author:'用户18',content:'韩承勋这个名字不好，为此平白惹出许多事端来'},
+ {floor:19,author:'用户19',content:'我一直很畏惧用自己名字给孩子取名的父母……'},
+ {floor:20,author:'用户20',content:'这个名字跟中国的x爱x，x念x，x思x有什么区别……'},
+ {floor:21,author:'用户21',content:'操蛋的怪不得节目里这小孩管牛蛙叫爹妈🤣我都宁愿你们把粉丝当套了结果你们直接无套内设啊'}
+];
+export const chapter3RedbookPost={id:'c3_redbook_1',author:'涵涵一家在首尔',avatarText:'涵',title:'韩国首尔蒙台梭利儿童之家幼儿园探访心得',
+ content:`初到首尔，想给涵涵找一家蒙氏园，我也是在naver和小红书上面都搜了一下，最终锁定了这家位于首尔市中心的玛利亚蒙氏园。它的价格纵向对比其他蒙氏园偏高，据说是因为选用了很多外教，同时配备1：2的生活老师。
+今天跟涵涵爸爸一起去现场看了开放日，同行的还有另外五组父母，我们一致认为玛利亚蒙氏园的伙食相较于其他幼儿园更好。有一些孩子比较小，想送来托育的父母就对玛利亚这边的营养师非常关注。我也在这趟行程里认识了其他同样来自中国的Omega妈妈，但我家孩子比较大了，所以我也比较在乎玛利亚这边的教学规划。`,images:['./小红书/小红书帖1.jpg','./小红书/小红书贴2.jpg','./小红书/小红书贴3.jpg'],comments:chapter3RedComments};

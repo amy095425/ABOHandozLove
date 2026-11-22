@@ -28,7 +28,7 @@
 @keyframes threads-post-enter{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .chapter1-notice-overlay{position:absolute;inset:0;z-index:25000;pointer-events:auto;background:#00000008}
 .chapter1-notice-banner{position:absolute;left:12px;right:12px;top:calc(52px + env(safe-area-inset-top,0px));max-width:480px;margin:0 auto;display:flex;align-items:center;gap:13px;padding:17px 18px;border-radius:22px;background:rgba(20,20,20,.96);color:white;box-shadow:0 8px 30px #0003;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);text-align:left;animation:threads-notice-enter .3s ease-out}
-.chapter1-notice-banner>img{display:block;width:42px;height:42px;border-radius:11px;object-fit:cover;flex-shrink:0}.chapter1-notice-banner>span{display:flex;flex-direction:column;gap:7px;min-width:0}.chapter1-notice-banner strong{font-size:14px;font-weight:650}.chapter1-notice-banner span>span{font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.chapter1-notice-banner>img{display:block;width:42px;height:42px;border-radius:11px;object-fit:cover;flex-shrink:0}.chapter1-notice-banner>.notice-copy{display:flex;flex:1;flex-direction:column;gap:7px;min-width:0}.chapter1-notice-banner strong{font-size:14px;font-weight:650}.chapter1-notice-banner .notice-preview{font-size:13px;line-height:1.5;overflow-wrap:anywhere}
 @keyframes threads-notice-enter{from{transform:translateY(-130%);opacity:0}to{transform:translateY(0);opacity:1}}
 @media(prefers-reduced-motion:reduce){.threads-post.is-new,.chapter1-notice-banner{animation:none}}
 
@@ -40,3 +40,13 @@
 .threads-like.is-liked svg{fill:currentColor;stroke:currentColor}
 .chapter1-kkt-notice .chapter1-notice-banner{background:#fee500;color:#302a17;border:1px solid #ffe967}
 .chapter1-kkt-notice .chapter1-notice-banner>img{border-radius:50%}
+
+.threads-inline-replies{margin-top:16px;padding:12px 14px;border-radius:12px;background:#f7f7f7}
+.threads-inline-replies:empty{display:none}
+.threads-inline-reply{margin:0 0 10px;color:#888;font-size:12px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.threads-inline-reply:last-child{margin-bottom:0}
+.threads-inline-reply strong{color:#777;font-weight:600}
+.threads-inline-reply.is-new{animation:threads-post-enter .25s ease-out}
+@media(prefers-reduced-motion:reduce){.threads-inline-reply.is-new{animation:none}}
+
+.threads-post-image{display:block;width:100%;max-width:100%;max-height:50dvh;object-fit:cover;border-radius:12px;margin:10px 0 14px;background:#e5e5e7}

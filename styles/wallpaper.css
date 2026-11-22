@@ -1,0 +1,24 @@
+/* 手机外层共用一个静止背景，解锁和主屏动画只移动前景。 */
+:root{
+ --wallpaper-image:url('../豆瓣/壁纸.jpg');
+ --wallpaper-overlay:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2));
+}
+#phone:not(.in-app){
+ background-color:#000;
+ background-image:var(--wallpaper-overlay),var(--wallpaper-image);
+ background-size:cover;
+ background-position:center;
+ background-repeat:no-repeat;
+}
+#home,#lock-screen,#passcode-screen{
+ background:transparent;
+}
+#phone:not(.in-app) #status-bar{
+ background:transparent;
+ color:#fff;
+}
+.lock-clock,#unlock-hint,.passcode-heading,
+#home .app-icon>span:last-child,
+#phone:not(.in-app) #status-bar{
+ text-shadow:0 1px 3px rgba(0,0,0,.5);
+}
